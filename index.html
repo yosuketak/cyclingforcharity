@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cycling for Charity Japan | サイクリング・フォー・チャリティー</title>
+  <meta name="description" content="チャリティサイクリングを通じて、すべての子どもたちが夢を追える社会へ。NPO法人サイクリング・フォー・チャリティー"/>
+  <meta property="og:title" content="Cycling for Charity Japan"/>
+  <meta property="og:description" content="Cycling to change children's futures. NPO based in Japan since 2015."/>
+  <meta property="og:type" content="website"/>
+  <style>
+    :root {
+      --green:       #2E7D32;
+      --green-light: #43A047;
+      --green-pale:  #E8F5E9;
+      --orange:      #E65100;
+      --orange-light:#FF6D00;
+      --orange-pale: #FFF3E0;
+      --blue:        #1565C0;
+      --text:        #1a1a1a;
+      --text-light:  #666;
+      --bg:          #fff;
+      --bg-alt:      #f8f9f8;
+      --radius:      16px;
+      --shadow:      0 4px 24px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e0e0e0;
+      padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 16px; color: var(--green); text-decoration: none;
+    }
+    .nav-logo .logo-icon {
+      width: 38px; height: 38px; background: var(--green);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; }
+    .nav-links a { color: var(--text-light); font-weight: 500; }
+    .nav-links a:hover { color: var(--green); text-decoration: none; }
+    .lang-btn {
+      background: var(--green-pale); color: var(--green);
+      border: 1.5px solid var(--green); padding: 6px 16px;
+      border-radius: 20px; font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .lang-btn:hover { background: #C8E6C9; }
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: 8px; background: none; border: none;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.25s; }
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: white; border-bottom: 1px solid #e0e0e0;
+      padding: 20px 28px; flex-direction: column; gap: 18px;
+      z-index: 99; box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 16px; font-weight: 600; color: var(--text); padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
+    .mobile-menu a:hover { color: var(--green); text-decoration: none; }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(150deg, rgba(27,94,32,0.72) 0%, rgba(21,101,192,0.65) 100%),
+                  url('IMG_2465.JPG') center/cover no-repeat;
+      color: white; text-align: center;
+      padding: 90px 24px 110px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+    }
+    .hero-inner { position: relative; max-width: 760px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white; font-size: 12px; font-weight: 700;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 28px;
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+    .hero h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 900; line-height: 1.15; margin-bottom: 22px; }
+    .hero h1 span { color: #A5D6A7; }
+    .hero-sub { font-size: 19px; opacity: 0.9; margin-bottom: 16px; line-height: 1.6; }
+    .hero-sub-sm { font-size: 14px; opacity: 0.65; margin-bottom: 44px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange-light); color: white; border-radius: 12px;
+      padding: 14px 28px; font-weight: 700; font-size: 16px;
+      box-shadow: 0 4px 18px rgba(230,81,0,0.4); transition: transform 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); text-decoration: none; color: white; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12); color: white;
+      border: 1.5px solid rgba(255,255,255,0.5); border-radius: 12px;
+      padding: 14px 28px; font-weight: 700; font-size: 16px;
+      transition: background 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.22); text-decoration: none; color: white; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--green); color: white;
+      padding: 28px 24px;
+    }
+    .stats-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 24px; text-align: center;
+    }
+    .stat-num { font-size: 36px; font-weight: 900; line-height: 1; }
+    .stat-label { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .tag {
+      display: inline-block; background: var(--green-pale); color: var(--green);
+      font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px;
+      margin-bottom: 14px; letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .section-title { font-size: clamp(24px, 4vw, 38px); font-weight: 900; margin-bottom: 14px; line-height: 1.2; }
+    .section-sub { color: var(--text-light); font-size: 16px; margin-bottom: 52px; max-width: 640px; line-height: 1.7; }
+
+    /* ── MISSION ── */
+    .mission-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    }
+    .mission-text h2 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 900; margin-bottom: 18px; line-height: 1.3; }
+    .mission-text p { color: var(--text-light); line-height: 1.8; margin-bottom: 14px; }
+    .mission-visual {
+      background: linear-gradient(135deg, var(--green-pale), #C8E6C9);
+      border-radius: 20px; padding: 48px 32px; text-align: center;
+    }
+    .mission-visual .big-icon { font-size: 72px; margin-bottom: 16px; }
+    .mission-quote {
+      font-size: 17px; font-weight: 700; color: var(--green);
+      line-height: 1.6;
+    }
+    @media (max-width: 700px) {
+      .mission-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; }
+    .step { text-align: center; }
+    .step-num {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      color: white; font-size: 24px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 4px 16px rgba(46,125,50,0.35);
+    }
+    .step-icon { font-size: 34px; margin-bottom: 10px; }
+    .step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+    /* ── RIDES ── */
+    .rides-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .ride-card {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1.5px solid #e0e0e0; transition: box-shadow 0.2s;
+    }
+    .ride-card:hover { box-shadow: var(--shadow); }
+    .ride-header {
+      padding: 28px 24px 20px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+      color: white;
+    }
+    .ride-header .ride-emoji { font-size: 36px; margin-bottom: 10px; }
+    .ride-header h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    .ride-header .ride-meta { font-size: 13px; opacity: 0.85; }
+    .ride-body { padding: 20px 24px 24px; }
+    .ride-body p { font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; }
+    .ride-tag {
+      display: inline-block; font-size: 12px; font-weight: 600;
+      background: var(--green-pale); color: var(--green);
+      padding: 3px 10px; border-radius: 12px; margin-right: 6px; margin-bottom: 4px;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .gallery-grid img {
+      width: 100%; height: 240px; object-fit: cover;
+      border-radius: var(--radius); transition: transform 0.2s;
+    }
+    .gallery-grid img:first-child {
+      grid-column: span 2; height: 280px;
+    }
+    .gallery-grid img:hover { transform: scale(1.02); }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img:first-child { grid-column: span 2; }
+    }
+
+    /* ── EVENTS ── */
+    .events-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 8px; }
+    .event-item {
+      display: flex; align-items: flex-start; gap: 18px;
+      background: var(--bg); border-radius: var(--radius);
+      padding: 20px 22px; border: 1.5px solid #e0e0e0;
+      transition: box-shadow 0.2s;
+    }
+    .event-item:hover { box-shadow: var(--shadow); }
+    .event-date-box {
+      background: var(--green); color: white;
+      border-radius: 10px; padding: 8px 12px;
+      text-align: center; flex-shrink: 0; min-width: 54px;
+    }
+    .event-date-box .ev-month { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; opacity: 0.85; }
+    .event-date-box .ev-day { font-size: 22px; font-weight: 900; line-height: 1; }
+    .event-info h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: var(--text); line-height: 1.3; }
+    .event-info p { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+    .event-badge {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      padding: 2px 8px; border-radius: 10px; margin-top: 6px;
+    }
+    .badge-green { background: var(--green-pale); color: var(--green); }
+    .badge-blue  { background: #E3F2FD; color: #1565C0; }
+    .badge-orange{ background: var(--orange-pale, #FFF3E0); color: var(--orange); }
+    .event-item-photo { padding: 0; overflow: hidden; flex-direction: column; align-items: stretch; }
+    .event-photo { width: 100%; height: 160px; object-fit: cover; display: block; }
+    .event-item-photo .event-inner { display: flex; align-items: flex-start; gap: 18px; padding: 18px 20px; }
+
+    /* ── GET INVOLVED ── */
+    .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 22px; }
+    .role-card {
+      background: var(--bg-alt); border-radius: var(--radius); padding: 28px 24px;
+      text-align: center; transition: box-shadow 0.2s;
+    }
+    .role-card:hover { box-shadow: var(--shadow); }
+    .role-icon { font-size: 44px; margin-bottom: 14px; }
+    .role-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--green); }
+    .role-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+    /* ── PARTNERS ── */
+    .partners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+    .partner-card {
+      border: 1.5px solid #e0e0e0; border-radius: var(--radius);
+      padding: 28px; text-align: center; transition: box-shadow 0.2s;
+    }
+    .partner-card:hover { box-shadow: var(--shadow); }
+    .partner-icon { font-size: 40px; margin-bottom: 14px; }
+    .partner-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .partner-card .partner-en { font-size: 13px; color: var(--text-light); margin-bottom: 12px; }
+    .partner-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; }
+    .partner-link {
+      display: inline-block; font-size: 13px; font-weight: 600;
+      color: var(--green); border: 1.5px solid var(--green);
+      padding: 6px 18px; border-radius: 20px; transition: background 0.2s;
+    }
+    .partner-link:hover { background: var(--green-pale); text-decoration: none; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+      color: white; text-align: center; padding: 80px 24px;
+    }
+    .cta-section h2 { font-size: clamp(24px, 4vw, 38px); font-weight: 900; margin-bottom: 14px; }
+    .cta-section p { font-size: 18px; opacity: 0.9; margin-bottom: 38px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--orange); border-radius: 12px;
+      padding: 16px 32px; font-weight: 800; font-size: 17px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.15); transition: transform 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); text-decoration: none; color: var(--orange); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1a1a; color: #aaa; text-align: center;
+      padding: 44px 24px; font-size: 14px;
+    }
+    .footer-logo { font-weight: 800; color: white; font-size: 17px; margin-bottom: 18px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
+    .footer-links a { color: #aaa; }
+    .footer-links a:hover { color: white; }
+    .footer-social { display: flex; gap: 16px; justify-content: center; margin-bottom: 22px; }
+    .social-btn {
+      background: #333; color: #ccc; border-radius: 8px;
+      padding: 8px 18px; font-size: 13px; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .social-btn:hover { background: #444; color: white; text-decoration: none; }
+
+    /* ── LANG TOGGLE ── */
+    [data-lang="en"] { display: none; }
+    body.en [data-lang="ja"] { display: none; }
+    body.en [data-lang="en"] { display: block; }
+    body.en span[data-lang="en"],
+    body.en a[data-lang="en"],
+    body.en li[data-lang="en"] { display: inline; }
+    h1, h2, h3, h4 { display: block; }
+    p { display: block; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { padding: 64px 20px 80px; }
+      section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="IMG_2215.JPG" alt="Cycling for Charity" style="height:44px; width:auto;"/>
+  </a>
+  <div class="nav-links">
+    <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+    <a href="#rides"><span data-lang="ja">ライド</span><span data-lang="en">Rides</span></a>
+    <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+    <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+    <a href="donate.html"><span data-lang="ja">寄付する</span><span data-lang="en">Donate</span></a>
+    <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="lang-btn" onclick="toggleLang()">EN / JA</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+  <a href="#rides"><span data-lang="ja">ライド</span><span data-lang="en">Rides</span></a>
+  <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+  <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+  <a href="donate.html"><span data-lang="ja">寄付する</span><span data-lang="en">Donate</span></a>
+  <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span data-lang="ja">NPO法人 設立 2019年</span>
+      <span data-lang="en">Established 2015 · NPO since 2019</span>
+    </div>
+
+    <h1 data-lang="ja">サイクリングで、<br/><span>子どもたちの未来</span>を変える。</h1>
+    <h1 data-lang="en">Cycling to change<br/><span>children's futures.</span></h1>
+
+    <p class="hero-sub" data-lang="ja">すべての子どもが、生まれた環境に関わらず、自由に夢を追える社会へ。</p>
+    <p class="hero-sub" data-lang="en">Building a society where every child can freely pursue their dreams, regardless of background.</p>
+
+    <p class="hero-sub-sm" data-lang="ja">NPO法人サイクリング・フォー・チャリティーは、長距離サイクリングを通じて子どもたちを支援し、教育格差への意識を高める活動を行っています。</p>
+    <p class="hero-sub-sm" data-lang="en">Cycling for Charity Japan is an NPO that supports marginalized youth through long-distance cycling events, raising funds and awareness for educational inequality in Japan.</p>
+
+    <div class="hero-btns">
+      <a class="btn-primary" href="#involved">
+        <span data-lang="ja">参加する →</span>
+        <span data-lang="en">Get Involved →</span>
+      </a>
+      <a class="btn-outline" href="#mission">
+        <span data-lang="ja">私たちについて</span>
+        <span data-lang="en">Learn More</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">2015</div>
+      <div class="stat-label"><span data-lang="ja">設立年</span><span data-lang="en">Founded</span></div>
+    </div>
+    <div>
+      <div class="stat-num">6</div>
+      <div class="stat-label"><span data-lang="ja">年間ライド回数</span><span data-lang="en">Rides Per Year</span></div>
+    </div>
+    <div>
+      <div class="stat-num">50+</div>
+      <div class="stat-label"><span data-lang="ja">チャレンジャー参加者</span><span data-lang="en">Young Challengers</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── MISSION ── -->
+<section id="mission">
+  <div class="section-inner">
+    <div class="mission-grid">
+      <div class="mission-text">
+        <div class="tag"><span data-lang="ja">ビジョン・ミッション</span><span data-lang="en">Vision & Mission</span></div>
+        <h2 data-lang="ja">すべての子どもが、<br/>夢を追える社会へ。</h2>
+        <h2 data-lang="en">Every child deserves<br/>a chance to dream.</h2>
+        <p data-lang="ja">日本には、貧困・虐待・孤児などの困難な状況に置かれた子どもが3万人以上います。私たちは、サイクリングという共通体験を通じて、こうした子どもたちの自己肯定感とコミュニケーション能力を育みます。</p>
+        <p data-lang="en">Over 30,000 children in Japan live in challenging circumstances — poverty, abuse, or orphaned. Through the shared experience of cycling, we help build their self-esteem and communication skills.</p>
+        <p data-lang="ja">長距離ライドによる資金調達と啓発活動を通じて、教育格差の問題に取り組み、子どもたちが豊かな未来へ踏み出せるよう支援しています。</p>
+        <p data-lang="en">Through long-distance charity rides, we raise funds and awareness to address educational inequality, helping vulnerable children step toward a brighter future.</p>
+      </div>
+      <div class="mission-visual">
+        <div class="big-icon">🚴</div>
+        <p class="mission-quote" data-lang="ja">「生まれた環境に関わらず、<br/>すべての子どもが自由に<br/>夢を描ける社会を目指して。」</p>
+        <p class="mission-quote" data-lang="en">"A society where every child<br/>can freely envision their future,<br/>regardless of their background."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how" style="background: var(--bg-alt);">
+  <div class="section-inner">
+    <div class="tag"><span data-lang="ja">活動の仕組み</span><span data-lang="en">How It Works</span></div>
+    <h2 class="section-title" data-lang="ja">ライドが社会を変える</h2>
+    <h2 class="section-title" data-lang="en">How Riding Creates Change</h2>
+    <p class="section-sub" data-lang="ja">チャレンジャー（子どもたち）と経験豊かなガイドが共にペダルを踏み、社会課題への意識を高めながら支援の輪を広げます。</p>
+    <p class="section-sub" data-lang="en">Young challengers and experienced guides ride together, building bonds while raising funds and awareness for children in need across Japan.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">🙋</div>
+        <div class="step-num">1</div>
+        <h3 data-lang="ja">チャレンジャーが参加</h3>
+        <h3 data-lang="en">Challengers Join</h3>
+        <p data-lang="ja">支援が必要な若者たちが「チャレンジャー」としてライドに参加。新しい仲間と出会い、達成感を体験します。</p>
+        <p data-lang="en">Young people in need join as "Challengers." They meet new friends, take on a physical challenge, and build confidence along the way.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">🚴</div>
+        <div class="step-num">2</div>
+        <h3 data-lang="ja">一緒にライドする</h3>
+        <h3 data-lang="en">Ride Together</h3>
+        <p data-lang="ja">経験豊かなガイドと共に長距離ルートを走破。峠、海岸、街を越えて、チームで目標を達成します。</p>
+        <p data-lang="en">Alongside experienced guides, challengers tackle long-distance routes — mountains, coastlines, and cities — as a team.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">💚</div>
+        <div class="step-num">3</div>
+        <h3 data-lang="ja">支援の輪が広がる</h3>
+        <h3 data-lang="en">Impact Grows</h3>
+        <p data-lang="ja">サポーターからの寄付と参加費が、連携NPOを通じて子どもたちの教育・生活支援に届けられます。</p>
+        <p data-lang="en">Donations and sponsorships flow to partner NPOs, directly funding education and welfare support for vulnerable children in Japan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RIDES ── -->
+<section id="rides">
+  <div class="section-inner">
+    <div class="tag"><span data-lang="ja">主なライドイベント</span><span data-lang="en">Featured Rides</span></div>
+    <h2 class="section-title" data-lang="ja">挑戦の記録</h2>
+    <h2 class="section-title" data-lang="en">Our Rides</h2>
+    <p class="section-sub" data-lang="ja">日本各地で行われるライドイベント。それぞれが子どもたちへの支援と、社会課題への啓発を目的としています。</p>
+    <p class="section-sub" data-lang="en">From Tokyo suburbs to the Noto Peninsula, each ride raises funds and awareness for children in challenging circumstances across Japan.</p>
+
+    <div class="rides-grid">
+
+      <div class="ride-card">
+        <div class="ride-header" style="background: linear-gradient(rgba(27,94,32,0.72), rgba(56,142,60,0.78)), url('Karuizawa.jpg') center/cover no-repeat;">
+          <div class="ride-emoji">🏔️</div>
+          <h3 data-lang="ja">軽井沢長距離ライド</h3>
+          <h3 data-lang="en">Karuizawa Long Distance Ride</h3>
+          <div class="ride-meta" data-lang="ja">3日間 · 茨城〜長野県 軽井沢</div>
+          <div class="ride-meta" data-lang="en">3 days · Ibaraki → Karuizawa, Nagano</div>
+        </div>
+        <div class="ride-body">
+          <p data-lang="ja">CFC最大のフラッグシップイベント。3日間かけてチャレンジャーとガイドが茨城から軽井沢（標高950m）を目指す長距離ライド。2025年は5名のチャレンジャーと23名の大人が参加。2台のサポートカーが水分・食事・安全をフルサポートします。</p>
+          <p data-lang="en">CFC's flagship 3-day event. Challengers and guides ride from Ibaraki all the way to Karuizawa (950m elevation). In 2025, 5 challengers and 23 adults participated, supported by 2 support vehicles handling hydration, meals, and safety.</p>
+          <div>
+            <span class="ride-tag" data-lang="ja">3日間</span>
+            <span class="ride-tag" data-lang="en">3 Days</span>
+            <span class="ride-tag" data-lang="ja">チャレンジャー参加</span>
+            <span class="ride-tag" data-lang="en">Youth Challengers</span>
+            <span class="ride-tag" data-lang="ja">フラッグシップ</span>
+            <span class="ride-tag" data-lang="en">Flagship Event</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ride-card">
+        <div class="ride-header" style="background: linear-gradient(rgba(21,101,192,0.72), rgba(2,136,209,0.78)), url('Shimanami.jpg') center/cover no-repeat;">
+          <div class="ride-emoji">🌊</div>
+          <h3 data-lang="ja">しまなみチャレンジ</h3>
+          <h3 data-lang="en">Shimanami Challenge</h3>
+          <div class="ride-meta" data-lang="ja">2日間 · 尾道〜今治（瀬戸内海）</div>
+          <div class="ride-meta" data-lang="en">2 days · Onomichi ↔ Imabari, Setouchi</div>
+        </div>
+        <div class="ride-body">
+          <p data-lang="ja">世界的に有名なしまなみ海道を走る2日間のライド。2025年は9名全員が尾道〜今治〜尾道を完走。瀬戸内海の絶景の中、チームで達成感を分かち合います。</p>
+          <p data-lang="en">A 2-day ride along the world-famous Shimanami Kaidō route. In 2025, all 9 riders completed the Onomichi–Imabari–Onomichi course, sharing the breathtaking views of the Seto Inland Sea.</p>
+          <div>
+            <span class="ride-tag" data-lang="ja">2日間</span>
+            <span class="ride-tag" data-lang="en">2 Days</span>
+            <span class="ride-tag" data-lang="ja">しまなみ海道</span>
+            <span class="ride-tag" data-lang="en">Shimanami Kaidō</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ride-card">
+        <div class="ride-header" style="background: linear-gradient(rgba(69,39,160,0.72), rgba(123,31,162,0.78)), url('Tama Lake.jpg') center/cover no-repeat;">
+          <div class="ride-emoji">🌸</div>
+          <h3 data-lang="ja">多摩湖ランチライド</h3>
+          <h3 data-lang="en">Tama Lake Lunch Ride</h3>
+          <div class="ride-meta" data-lang="ja">日帰り · 武蔵境〜多摩湖（東京）</div>
+          <div class="ride-meta" data-lang="en">Day trip · Musashisakai → Tama Lake, Tokyo</div>
+        </div>
+        <div class="ride-body">
+          <p data-lang="ja">東京近郊で開催される季節のランチライド。武蔵境を出発し多摩湖を目指す日帰りコース。大きなイベントに向けた練習会も兼ねており、新しいメンバーが気軽に参加できる定番イベントです。</p>
+          <p data-lang="en">A seasonal day-trip lunch ride from Musashisakai to Tama Lake in Tokyo. Open to all levels, it also serves as a practice ride for larger events — a great entry point for new members.</p>
+          <div>
+            <span class="ride-tag" data-lang="ja">日帰り</span>
+            <span class="ride-tag" data-lang="en">Day Trip</span>
+            <span class="ride-tag" data-lang="ja">初心者歓迎</span>
+            <span class="ride-tag" data-lang="en">All Levels</span>
+            <span class="ride-tag" data-lang="ja">定期開催</span>
+            <span class="ride-tag" data-lang="en">Regular Event</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── UPCOMING EVENTS ── -->
+<section id="events" style="background: var(--bg-alt);">
+  <div class="section-inner">
+    <div class="tag"><span data-lang="ja">2026年の予定</span><span data-lang="en">2026 Schedule</span></div>
+    <h2 class="section-title" data-lang="ja">今年のライドイベント</h2>
+    <h2 class="section-title" data-lang="en">Upcoming Events</h2>
+    <p class="section-sub" data-lang="ja">2026年は6つのイベントを予定しています。ぜひご参加ください！</p>
+    <p class="section-sub" data-lang="en">We have 6 events planned for 2026. Come join us on the road!</p>
+
+    <div class="events-list">
+
+      <div class="event-item">
+        <div class="event-date-box">
+          <div class="ev-month"><span data-lang="ja">3月</span><span data-lang="en">Mar</span></div>
+          <div class="ev-day">29</div>
+        </div>
+        <div class="event-info">
+          <h4 data-lang="ja">多摩湖ランチライド</h4>
+          <h4 data-lang="en">Tama Lake Lunch Ride</h4>
+          <p data-lang="ja">武蔵境〜多摩湖 · 日帰り</p>
+          <p data-lang="en">Musashisakai → Tama Lake · Day trip</p>
+          <span class="event-badge badge-green"><span data-lang="ja">初心者歓迎</span><span data-lang="en">All Levels</span></span>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="event-date-box" style="background: #1565C0;">
+          <div class="ev-month"><span data-lang="ja">5月</span><span data-lang="en">May</span></div>
+          <div class="ev-day">3–9</div>
+        </div>
+        <div class="event-info">
+          <h4 data-lang="ja">Strava バーチャルライド</h4>
+          <h4 data-lang="en">Strava Virtual Ride</h4>
+          <p data-lang="ja">オンライン参加 · GWチャレンジ</p>
+          <p data-lang="en">Online participation · Golden Week challenge</p>
+          <span class="event-badge badge-blue"><span data-lang="ja">オンライン</span><span data-lang="en">Online</span></span>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="event-date-box" style="background: #4527A0;">
+          <div class="ev-month"><span data-lang="ja">5月</span><span data-lang="en">May</span></div>
+          <div class="ev-day">16–17</div>
+        </div>
+        <div class="event-info">
+          <h4 data-lang="ja">北アルプスライド</h4>
+          <h4 data-lang="en">North Alps Ride</h4>
+          <p data-lang="ja">長野県 · 1泊2日</p>
+          <p data-lang="en">Nagano · 2 days</p>
+          <span class="event-badge badge-green"><span data-lang="ja">チャレンジャー参加</span><span data-lang="en">Youth Challengers</span></span>
+        </div>
+      </div>
+
+      <div class="event-item event-item-photo">
+        <img class="event-photo" src="Karuizawa.jpg" alt="Karuizawa ride"/>
+        <div class="event-inner">
+          <div class="event-date-box" style="background: #1B5E20;">
+            <div class="ev-month"><span data-lang="ja">10月</span><span data-lang="en">Oct</span></div>
+            <div class="ev-day">10–12</div>
+          </div>
+          <div class="event-info">
+            <h4 data-lang="ja">軽井沢チャレンジライド</h4>
+            <h4 data-lang="en">Karuizawa Challenge Ride</h4>
+            <p data-lang="ja">茨城〜軽井沢 · 3日間 · フラッグシップ</p>
+            <p data-lang="en">Ibaraki → Karuizawa · 3 days · Flagship</p>
+            <span class="event-badge badge-orange"><span data-lang="ja">フラッグシップ</span><span data-lang="en">Flagship Event</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-item event-item-photo">
+        <img class="event-photo" src="Biwako.JPG" alt="Lake Biwa ride"/>
+        <div class="event-inner">
+          <div class="event-date-box" style="background: #006064;">
+            <div class="ev-month"><span data-lang="ja">10月</span><span data-lang="en">Oct</span></div>
+            <div class="ev-day">16–18</div>
+          </div>
+          <div class="event-info">
+            <h4 data-lang="ja">琵琶湖ライド</h4>
+            <h4 data-lang="en">Lake Biwa Ride</h4>
+            <p data-lang="ja">滋賀県 · 2泊3日</p>
+            <p data-lang="en">Shiga · 3 days</p>
+            <span class="event-badge badge-green"><span data-lang="ja">チャレンジャー参加</span><span data-lang="en">Youth Challengers</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-item event-item-photo">
+        <img class="event-photo" src="Annual Report.jpeg" alt="Annual Report Gathering"/>
+        <div class="event-inner">
+          <div class="event-date-box" style="background: #4E342E;">
+            <div class="ev-month"><span data-lang="ja">11月</span><span data-lang="en">Nov</span></div>
+            <div class="ev-day">8</div>
+          </div>
+          <div class="event-info">
+            <h4 data-lang="ja">年次報告会</h4>
+            <h4 data-lang="en">Annual Report Gathering</h4>
+            <p data-lang="ja">2026年の活動を振り返る報告会</p>
+            <p data-lang="en">Year-end review and celebration of 2026 rides</p>
+            <span class="event-badge badge-blue"><span data-lang="ja">全員参加</span><span data-lang="en">All Welcome</span></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOLLOW US / FACEBOOK FEED ── -->
+<section style="background: var(--bg); padding: 64px 24px;">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom: 40px;">
+      <div class="tag"><span data-lang="ja">SNSでフォロー</span><span data-lang="en">Follow Us</span></div>
+      <h2 class="section-title" data-lang="ja">最新情報はFacebookで</h2>
+      <h2 class="section-title" data-lang="en">Latest from Facebook</h2>
+      <p class="section-sub" data-lang="ja">ライドの様子や最新ニュースをFacebookで発信中！Instagramもぜひフォローしてください。</p>
+      <p class="section-sub" data-lang="en">Follow our latest rides and news on Facebook. We're on Instagram too!</p>
+    </div>
+    <div style="display:flex; gap:40px; flex-wrap:wrap; justify-content:center; align-items:flex-start;">
+
+      <!-- Facebook Page Plugin (iframe) -->
+      <div style="flex:0 0 auto; max-width:100%;">
+        <iframe
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcyclingforcharityjapan%2F&tabs=timeline&width=380&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"
+          width="380"
+          height="600"
+          style="border:none;overflow:hidden;max-width:100%;"
+          scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+        </iframe>
+      </div>
+
+      <!-- Instagram + donate buttons -->
+      <div style="display:flex; flex-direction:column; gap:16px; justify-content:center; padding-top:8px;">
+        <a href="https://www.instagram.com/cyclingforcharity/" target="_blank"
+           style="display:inline-flex; align-items:center; gap:10px; background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:white; border-radius:12px; padding:14px 28px; font-weight:700; font-size:16px; text-decoration:none;"
+           onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span data-lang="ja">Instagramをフォロー</span><span data-lang="en">Follow on Instagram</span>
+        </a>
+        <a href="donate.html"
+           style="display:inline-flex; align-items:center; gap:10px; background:var(--orange-light); color:white; border-radius:12px; padding:14px 28px; font-weight:700; font-size:16px; text-decoration:none;"
+           onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          💚 <span data-lang="ja">寄付する</span><span data-lang="en">Make a Donation</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section style="background: var(--bg-alt); padding: 80px 24px;">
+  <div class="section-inner">
+    <div class="tag"><span data-lang="ja">フォトギャラリー</span><span data-lang="en">Gallery</span></div>
+    <h2 class="section-title" data-lang="ja">ライドの記録</h2>
+    <h2 class="section-title" data-lang="en">Ride Moments</h2>
+    <p class="section-sub" data-lang="ja">チャレンジャーとガイドが共に走った、忘れられない瞬間たち。</p>
+    <p class="section-sub" data-lang="en">Unforgettable moments shared by challengers and guides on the road.</p>
+    <div class="gallery-grid">
+      <img src="IMG_5918.JPG" alt="Cycling for Charity group with banner"/>
+      <img src="IMG_7878.jpeg" alt="Challengers on the road"/>
+      <img src="IMG_9365.JPG" alt="Team fist bump celebration"/>
+      <img src="IMG_5855.jpeg" alt="Pre-ride briefing"/>
+      <img src="IMG_1093.jpeg" alt="Riding through rice fields"/>
+      <img src="IMG_5867.jpeg" alt="Group ride along the river"/>
+    </div>
+  </div>
+</section>
+
+<!-- ── GET INVOLVED ── -->
+<section id="involved" style="background: var(--bg-alt);">
+  <div class="section-inner">
+    <div class="tag"><span data-lang="ja">参加方法</span><span data-lang="en">Get Involved</span></div>
+    <h2 class="section-title" data-lang="ja">あなたの力が必要です</h2>
+    <h2 class="section-title" data-lang="en">Every Role Makes a Difference</h2>
+    <p class="section-sub" data-lang="ja">サイクリストでも、そうでなくても。あなたの関わり方で、子どもたちの未来を変えることができます。</p>
+    <p class="section-sub" data-lang="en">Whether you ride or not, there's a meaningful way for you to be part of the change.</p>
+
+    <div class="roles-grid">
+      <div class="role-card">
+        <div class="role-icon">🏆</div>
+        <h3 data-lang="ja">チャレンジャー</h3>
+        <h3 data-lang="en">Challenger</h3>
+        <p data-lang="ja">ライドに参加して新しい挑戦を。自信とコミュニケーション力を身につけながら、仲間と一緒にゴールを目指します。</p>
+        <p data-lang="en">Join a ride and take on a new challenge. Build confidence and communication skills alongside guides and fellow challengers.</p>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🚴</div>
+        <h3 data-lang="ja">ガイド</h3>
+        <h3 data-lang="en">Guide</h3>
+        <p data-lang="ja">経験豊かなサイクリストとして、チャレンジャーを支えるガイドに。安全で楽しいライドをリードしてください。</p>
+        <p data-lang="en">Use your cycling experience to lead and support challengers. Help create a safe, encouraging ride environment.</p>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">💚</div>
+        <h3 data-lang="ja">寄付・支援者</h3>
+        <h3 data-lang="en">Donor / Supporter</h3>
+        <p data-lang="ja">金銭的な支援を通じて、ライドと子どもたちへのプログラムを支えてください。小さな支援が大きな変化を生みます。</p>
+        <p data-lang="en">Support our rides and youth programs financially. Every donation, large or small, helps change a child's future.</p>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🤝</div>
+        <h3 data-lang="ja">スポンサー</h3>
+        <h3 data-lang="en">Sponsor</h3>
+        <p data-lang="ja">企業・団体として活動を支援するスポンサーを募集しています。社会貢献活動の一環として、ご検討ください。</p>
+        <p data-lang="en">We welcome corporate and organizational sponsors. Partner with us to make a visible social impact through cycling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARTNERS ── -->
+<section id="partners">
+  <div class="section-inner">
+    <div class="tag"><span data-lang="ja">連携・支援先団体</span><span data-lang="en">Partner Organizations</span></div>
+    <h2 class="section-title" data-lang="ja">共に歩む仲間たち</h2>
+    <h2 class="section-title" data-lang="en">Our Partners</h2>
+    <p class="section-sub" data-lang="ja">CFC Japanは、信頼できるNPOと連携し、子どもたちへの支援を届けています。</p>
+    <p class="section-sub" data-lang="en">We work alongside trusted nonprofits to ensure funds and support reach the children who need it most.</p>
+
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-icon">🌱</div>
+        <h3 data-lang="ja">未来の森</h3>
+        <h3 data-lang="en">Mirai no Mori</h3>
+        <p class="partner-en" data-lang="ja">Mirai no Mori</p>
+        <p class="partner-en" data-lang="en">未来の森</p>
+        <p data-lang="ja">虐待・育児放棄・孤児など困難な状況に置かれた子どもたちに、アウトドアプログラムを通じた人生を変える体験を提供するNPO。</p>
+        <p data-lang="en">An NPO providing life-changing outdoor programs for abused, neglected, and orphaned youth in Japan, supporting their growth into happy and successful adults.</p>
+        <a class="partner-link" href="https://mirai-no-mori.jp" target="_blank">Website →</a>
+      </div>
+      <div class="partner-card" style="border-style: dashed; opacity: 0.7;">
+        <div class="partner-icon">➕</div>
+        <h3 data-lang="ja">連携団体募集中</h3>
+        <h3 data-lang="en">Partner With Us</h3>
+        <p class="partner-en"> </p>
+        <p data-lang="ja">子どもたちの未来を共に支えるNPO・企業・団体からのご連絡をお待ちしています。</p>
+        <p data-lang="en">We welcome new NPOs, companies, and organizations who share our vision for children's futures in Japan.</p>
+        <a class="partner-link" href="#contact">
+          <span data-lang="ja">お問い合わせ</span>
+          <span data-lang="en">Contact Us</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <h2 data-lang="ja">さあ、一緒に走ろう。</h2>
+  <h2 data-lang="en">Ride with us. Change a life.</h2>
+  <p data-lang="ja">あなたのペダルひとこぎが、子どもたちの未来につながっています。</p>
+  <p data-lang="en">Every pedal stroke you take can help change a child's future in Japan.</p>
+  <a class="btn-white" href="#involved">
+    <span data-lang="ja">参加・支援する →</span>
+    <span data-lang="en">Get Involved →</span>
+  </a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="contact">
+  <div class="footer-logo"><img src="IMG_2215.JPG" alt="Cycling for Charity" style="height:36px;width:auto;vertical-align:middle;margin-right:10px;">Cycling for Charity</div>
+  <div class="footer-social">
+    <a class="social-btn" href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank">Facebook</a>
+    <a class="social-btn" href="https://www.instagram.com/cyclingforcharity/" target="_blank">Instagram</a>
+  </div>
+  <div class="footer-links">
+    <a href="/"><span data-lang="ja">ホーム</span><span data-lang="en">Home</span></a>
+    <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+    <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+    <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+    <a href="privacy.html"><span data-lang="ja">プライバシーポリシー</span><span data-lang="en">Privacy Policy</span></a>
+    <a href="mailto:cyclingforcharityjapan@gmail.com">
+      <span data-lang="ja">お問い合わせ</span>
+      <span data-lang="en">Contact</span>
+    </a>
+  </div>
+  <p>© 2025 NPO法人 サイクリング・フォー・チャリティー. <span data-lang="ja">全著作権所有。</span><span data-lang="en">All rights reserved.</span></p>
+  <p style="margin-top: 8px; font-size: 12px; opacity: 0.5;">
+    <span data-lang="ja">特定非営利活動法人 サイクリング・フォー・チャリティー | 東京都</span>
+    <span data-lang="en">NPO Corporation Cycling for Charity Japan | Tokyo, Japan</span>
+  </p>
+</footer>
+
+<script>
+  function toggleLang() {
+    document.body.classList.toggle('en');
+    const isEn = document.body.classList.contains('en');
+    document.documentElement.lang = isEn ? 'en' : 'ja';
+    localStorage.setItem('cfc_lang', isEn ? 'en' : 'ja');
+  }
+  if (localStorage.getItem('cfc_lang') === 'en') {
+    document.body.classList.add('en');
+    document.documentElement.lang = 'en';
+  }
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>参加する | Cycling for Charity Japan</title>
+  <style>
+    :root {
+      --green:       #2E7D32;
+      --green-light: #43A047;
+      --green-pale:  #E8F5E9;
+      --orange:      #E65100;
+      --orange-light:#FF6D00;
+      --orange-pale: #FFF3E0;
+      --blue:        #1565C0;
+      --text:        #1a1a1a;
+      --text-light:  #666;
+      --bg:          #fff;
+      --bg-alt:      #f8f9f8;
+      --radius:      16px;
+      --shadow:      0 4px 24px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif; color: var(--text); background: var(--bg); line-height: 1.8; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e0e0e0;
+      padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; }
+    .nav-links a { color: var(--text-light); font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); text-decoration: none; }
+    .lang-btn {
+      background: var(--green-pale); color: var(--green);
+      border: 1.5px solid var(--green); padding: 6px 16px;
+      border-radius: 20px; font-size: 13px; font-weight: 700;
+      cursor: pointer;
+    }
+    .lang-btn:hover { background: #C8E6C9; }
+
+    /* ── HAMBURGER (mobile) ── */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: 8px; background: none; border: none;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.25s; }
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: white; border-bottom: 1px solid #e0e0e0;
+      padding: 20px 28px; flex-direction: column; gap: 18px;
+      z-index: 99; box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 16px; font-weight: 600; color: var(--text); padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
+    .mobile-menu a:hover { color: var(--green); text-decoration: none; }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: linear-gradient(150deg, rgba(27,94,32,0.85) 0%, rgba(230,81,0,0.75) 100%),
+                  url('IMG_8106.jpeg') center/cover no-repeat;
+      color: white; text-align: center; padding: 70px 24px 80px;
+    }
+    .page-header h1 { font-size: clamp(30px, 5vw, 52px); font-weight: 900; margin-bottom: 12px; }
+    .page-header p { font-size: 17px; opacity: 0.88; max-width: 640px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── SECTIONS ── */
+    section { padding: 72px 24px; }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+    .tag {
+      display: inline-block; background: var(--green-pale); color: var(--green);
+      font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px;
+      margin-bottom: 14px; letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .tag-orange { background: var(--orange-pale); color: var(--orange); }
+    h2.section-title { font-size: clamp(22px, 4vw, 34px); font-weight: 900; margin-bottom: 14px; line-height: 1.25; }
+    p.section-sub { color: var(--text-light); font-size: 16px; margin-bottom: 44px; line-height: 1.7; }
+    p.body-text { color: var(--text-light); font-size: 15px; line-height: 1.9; margin-bottom: 16px; }
+
+    /* ── ROLES GRID ── */
+    .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
+    .role-card {
+      background: var(--bg-alt); border-radius: var(--radius);
+      padding: 28px 22px; text-align: center;
+      border: 1.5px solid #e8e8e8; transition: box-shadow 0.2s;
+    }
+    .role-card:hover { box-shadow: var(--shadow); }
+    .role-icon { font-size: 42px; margin-bottom: 12px; }
+    .role-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: var(--green); }
+    .role-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; }
+    .role-btn {
+      display: inline-block; font-size: 13px; font-weight: 700;
+      background: var(--green); color: white;
+      padding: 8px 18px; border-radius: 20px; transition: background 0.2s;
+    }
+    .role-btn:hover { background: var(--green-light); text-decoration: none; color: white; }
+
+    /* ── DONATION BOX ── */
+    .donation-section { background: var(--bg-alt); }
+    .donation-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .donation-card {
+      background: var(--bg); border-radius: var(--radius);
+      padding: 32px 28px; border: 1.5px solid #e0e0e0;
+    }
+    .donation-card h3 {
+      font-size: 18px; font-weight: 800; margin-bottom: 6px; color: var(--text);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .donation-card .icon { font-size: 26px; }
+    .donation-card p { font-size: 14px; color: var(--text-light); line-height: 1.7; margin-bottom: 16px; }
+    .bank-table { width: 100%; font-size: 14px; border-collapse: collapse; }
+    .bank-table tr { border-bottom: 1px solid #f0f0f0; }
+    .bank-table td { padding: 9px 6px; vertical-align: top; }
+    .bank-table td:first-child { color: var(--text-light); width: 110px; font-weight: 600; white-space: nowrap; }
+    .btn-donate {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange-light); color: white;
+      border-radius: 12px; padding: 13px 24px;
+      font-weight: 700; font-size: 15px;
+      box-shadow: 0 4px 14px rgba(230,81,0,0.3);
+      transition: transform 0.2s;
+    }
+    .btn-donate:hover { transform: translateY(-2px); text-decoration: none; color: white; }
+    @media (max-width: 640px) {
+      .donation-methods { grid-template-columns: 1fr; }
+    }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 16px; }
+    .faq-item {
+      border: 1.5px solid #e0e0e0; border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; cursor: pointer; background: var(--bg);
+      font-weight: 700; font-size: 15px; gap: 16px;
+      user-select: none;
+    }
+    .faq-q:hover { background: var(--bg-alt); }
+    .faq-q .arrow { font-size: 18px; transition: transform 0.25s; flex-shrink: 0; color: var(--green); }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none; padding: 0 24px 20px;
+      font-size: 14px; color: var(--text-light); line-height: 1.8;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CONTACT CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+      color: white; text-align: center; padding: 80px 24px;
+    }
+    .cta-section h2 { font-size: clamp(22px, 4vw, 36px); font-weight: 900; margin-bottom: 14px; }
+    .cta-section p { font-size: 17px; opacity: 0.9; margin-bottom: 36px; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--green); border-radius: 12px;
+      padding: 15px 32px; font-weight: 800; font-size: 16px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.15); transition: transform 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); text-decoration: none; color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 44px 24px; font-size: 14px; }
+    .footer-logo { font-weight: 800; color: white; font-size: 17px; margin-bottom: 18px; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
+    .footer-links a { color: #aaa; }
+    .footer-links a:hover { color: white; }
+    .footer-social { display: flex; gap: 16px; justify-content: center; margin-bottom: 22px; }
+    .social-btn { background: #333; color: #ccc; border-radius: 8px; padding: 8px 18px; font-size: 13px; font-weight: 600; }
+    .social-btn:hover { background: #444; color: white; text-decoration: none; }
+
+    /* ── LANG ── */
+    [data-lang="en"] { display: none; }
+    body.lang-en [data-lang="ja"] { display: none; }
+    body.lang-en [data-lang="en"] { display: block; }
+    body.lang-en span[data-lang="en"],
+    body.lang-en li[data-lang="en"],
+    body.lang-en td[data-lang="en"] { display: inline; }
+    h2, h3, p, td, div, li { display: revert; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="IMG_2215.JPG" alt="Cycling for Charity" style="height:44px; width:auto;"/>
+  </a>
+  <div class="nav-links">
+    <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+    <a href="index.html#rides"><span data-lang="ja">ライド</span><span data-lang="en">Rides</span></a>
+    <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+    <a href="get-involved.html" class="active"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+    <a href="donate.html"><span data-lang="ja">寄付する</span><span data-lang="en">Donate</span></a>
+    <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+  </div>
+  <div style="display:flex; align-items:center; gap:12px;">
+    <button class="lang-btn" onclick="toggleLang()">EN / JA</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+  <a href="index.html#rides"><span data-lang="ja">ライド</span><span data-lang="en">Rides</span></a>
+  <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+  <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+  <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+</div>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <h1 data-lang="ja">参加する・支援する</h1>
+  <h1 data-lang="en">Get Involved</h1>
+  <p data-lang="ja">サイクリストでも、そうでなくても。あなたの関わり方で、子どもたちの未来を変えることができます。</p>
+  <p data-lang="en">Whether you ride or not, there's a meaningful way for you to be part of the change.</p>
+</div>
+
+<!-- ── WAYS TO JOIN ── -->
+<section>
+  <div class="section-inner">
+    <div class="tag"><span data-lang="ja">参加方法</span><span data-lang="en">Ways to Join</span></div>
+    <h2 class="section-title" data-lang="ja">あなたの関わり方を選んでください</h2>
+    <h2 class="section-title" data-lang="en">Find Your Role</h2>
+    <p class="section-sub" data-lang="ja">チャレンジャー・ガイド・寄付者・スポンサー。どんな形でも、あなたの参加が子どもたちの笑顔につながります。</p>
+    <p class="section-sub" data-lang="en">Challenger, guide, donor, or sponsor — every form of participation helps build a brighter future for the children we support.</p>
+
+    <div class="roles-grid">
+
+      <div class="role-card">
+        <div class="role-icon">🏆</div>
+        <h3 data-lang="ja">チャレンジャー</h3>
+        <h3 data-lang="en">Challenger</h3>
+        <p data-lang="ja">ライドに参加する若者。経験・体力不問。仲間と共に挑戦し、自信とコミュニティを得ます。ミライの森などの連携NPOを通じて参加できます。</p>
+        <p data-lang="en">Young people who join the rides. No experience or fitness level required. Gain confidence, community, and a sense of achievement. Apply through our partner NPO Mirai no Mori.</p>
+        <a class="role-btn" href="mailto:cyclingforcharityjapan@gmail.com">
+          <span data-lang="ja">問い合わせる</span><span data-lang="en">Enquire</span>
+        </a>
+      </div>
+
+      <div class="role-card">
+        <div class="role-icon">🚴</div>
+        <h3 data-lang="ja">ガイド</h3>
+        <h3 data-lang="en">Guide</h3>
+        <p data-lang="ja">チャレンジャーを支えるサイクリスト。安全で楽しいライドを一緒に作ってください。経験豊富な方大歓迎。年に数回の参加からOK。</p>
+        <p data-lang="en">Experienced cyclists who ride alongside and support the challengers. Help create a safe, encouraging experience. Participate in as few or as many events as you like.</p>
+        <a class="role-btn" href="mailto:cyclingforcharityjapan@gmail.com">
+          <span data-lang="ja">応募する</span><span data-lang="en">Apply</span>
+        </a>
+      </div>
+
+      <div class="role-card">
+        <div class="role-icon">💚</div>
+        <h3 data-lang="ja">寄付・支援者</h3>
+        <h3 data-lang="en">Donor</h3>
+        <p data-lang="ja">金銭的なご支援を通じて、ライドと子どもたちへのプログラムを支えてください。銀行振込またはクレジットカードで寄付できます。</p>
+        <p data-lang="en">Support our rides and youth programs through a financial contribution. Bank transfer and credit card donations are both available.</p>
+        <a class="role-btn" href="donate.html">
+          <span data-lang="ja">寄付する</span><span data-lang="en">Donate</span>
+        </a>
+      </div>
+
+      <div class="role-card">
+        <div class="role-icon">🤝</div>
+        <h3 data-lang="ja">スポンサー</h3>
+        <h3 data-lang="en">Sponsor</h3>
+        <p data-lang="ja">企業・団体として活動を支援してください。ロゴ掲載・イベント参加・CSR連携など、様々な協力の形があります。</p>
+        <p data-lang="en">Support us as a corporate or organizational sponsor. We offer logo placement, event participation, CSR partnership opportunities, and more.</p>
+        <a class="role-btn" href="mailto:cyclingforcharityjapan@gmail.com">
+          <span data-lang="ja">相談する</span><span data-lang="en">Get in Touch</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section>
+  <div class="section-inner">
+    <div class="tag"><span data-lang="ja">よくある質問</span><span data-lang="en">FAQ</span></div>
+    <h2 class="section-title" data-lang="ja">よくあるご質問</h2>
+    <h2 class="section-title" data-lang="en">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-lang="ja">チャレンジャーとして参加するには、どうすればいいですか？</span>
+          <span data-lang="en">How do I join as a Challenger?</span>
+          <span class="arrow">▾</span>
+        </div>
+        <div class="faq-a">
+          <p data-lang="ja">チャレンジャーへの参加は、連携NPO（ミライの森など）を通じてご案内しています。ご自身が連携NPOのサービスを利用している場合は、担当スタッフにご相談ください。直接お問い合わせいただくことも可能です：<a href="mailto:cyclingforcharityjapan@gmail.com">cyclingforcharityjapan@gmail.com</a></p>
+          <p data-lang="en">Challenger participation is coordinated through our partner NPOs (such as Mirai no Mori). If you are already connected with one of our partner organizations, please speak with your staff there. You can also contact us directly: <a href="mailto:cyclingforcharityjapan@gmail.com">cyclingforcharityjapan@gmail.com</a></p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-lang="ja">ガイドに参加するのに、特別な資格は必要ですか？</span>
+          <span data-lang="en">Do I need special qualifications to be a Guide?</span>
+          <span class="arrow">▾</span>
+        </div>
+        <div class="faq-a">
+          <p data-lang="ja">特別な資格は必要ありません。ただし、長距離ライドに参加できる程度の体力と自転車経験があることが望ましいです。安全で楽しいライドを一緒に作りたいという気持ちをお持ちの方であれば大歓迎です。まずはメールでお気軽にご相談ください。</p>
+          <p data-lang="en">No special certifications are required. However, a reasonable level of fitness and cycling experience for long-distance rides is preferred. If you have the enthusiasm to help create a safe and fun ride for the challengers, we'd love to hear from you. Please reach out by email to get started.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-lang="ja">寄付金は何に使われますか？領収書は発行されますか？</span>
+          <span data-lang="en">How are donations used? Will I receive a receipt?</span>
+          <span class="arrow">▾</span>
+        </div>
+        <div class="faq-a">
+          <p data-lang="ja">いただいたご寄付は、チャレンジャーのライド参加費（交通・宿泊・装備）、連携NPOへの支援金、およびイベント運営費に充てられます。NPO法人として毎年決算報告書を公開しており、透明性を大切にしています。ご希望の方には領収書を発行いたしますので、振込後にメールでお知らせください。</p>
+          <p data-lang="en">Donations are used for challenger participation costs (transport, accommodation, equipment), support for partner NPOs, and event operations. As a registered NPO we publish annual financial reports for full transparency. If you need a receipt, please contact us by email after your transfer and we'll be happy to issue one.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span data-lang="ja">企業・団体としてスポンサーになることはできますか？</span>
+          <span data-lang="en">Can a company or organization become a sponsor?</span>
+          <span class="arrow">▾</span>
+        </div>
+        <div class="faq-a">
+          <p data-lang="ja">はい、企業・団体様からのご支援を歓迎しています。ロゴ掲載（ウェブサイト・イベント資料）、社員向けライド参加枠の提供、CSR活動としての連携など、さまざまな形でのスポンサーシップが可能です。詳細はメールにてご相談ください：<a href="mailto:cyclingforcharityjapan@gmail.com">cyclingforcharityjapan@gmail.com</a></p>
+          <p data-lang="en">Yes, we welcome corporate and organizational sponsorships. Options include logo placement (website and event materials), employee ride participation slots, and CSR partnership arrangements. Please get in touch by email to discuss: <a href="mailto:cyclingforcharityjapan@gmail.com">cyclingforcharityjapan@gmail.com</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <h2 data-lang="ja">まずはメールでお気軽に！</h2>
+  <h2 data-lang="en">Get in Touch — We'd Love to Hear from You</h2>
+  <p data-lang="ja">参加方法や寄付についてのご質問、スポンサーのご相談など、どんなことでもお気軽にご連絡ください。</p>
+  <p data-lang="en">Questions about joining, donating, or sponsoring? We're happy to answer anything. Drop us an email anytime.</p>
+  <a class="btn-white" href="mailto:cyclingforcharityjapan@gmail.com">
+    <span data-lang="ja">✉ メールを送る</span>
+    <span data-lang="en">✉ Send us an Email</span>
+  </a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo"><img src="IMG_2215.JPG" alt="Cycling for Charity" style="height:36px;width:auto;vertical-align:middle;margin-right:10px;">Cycling for Charity</div>
+  <div class="footer-social">
+    <a class="social-btn" href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank">Facebook</a>
+    <a class="social-btn" href="https://www.instagram.com/cyclingforcharity/" target="_blank">Instagram</a>
+  </div>
+  <div class="footer-links">
+    <a href="index.html"><span data-lang="ja">ホーム</span><span data-lang="en">Home</span></a>
+    <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+    <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+    <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+    <a href="privacy.html"><span data-lang="ja">プライバシーポリシー</span><span data-lang="en">Privacy Policy</span></a>
+    <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+  </div>
+  <p>© 2025 NPO法人 サイクリング・フォー・チャリティー. All rights reserved.</p>
+</footer>
+
+<script>
+  const stored = localStorage.getItem('cfc_lang');
+  if (stored === 'en') document.body.classList.add('lang-en');
+
+  function toggleLang() {
+    const isEn = document.body.classList.toggle('lang-en');
+    localStorage.setItem('cfc_lang', isEn ? 'en' : 'ja');
+  }
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

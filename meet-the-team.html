@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meet the Team | Cycling for Charity Japan</title>
+  <style>
+    :root {
+      --green:       #2E7D32;
+      --green-light: #43A047;
+      --green-pale:  #E8F5E9;
+      --orange:      #E65100;
+      --text:        #1a1a1a;
+      --text-light:  #666;
+      --bg:          #fff;
+      --bg-alt:      #f8f9f8;
+      --radius:      16px;
+      --shadow:      0 4px 24px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e0e0e0;
+      padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; }
+    .nav-links a { color: var(--text-light); font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); text-decoration: none; }
+    .lang-btn {
+      background: var(--green-pale); color: var(--green);
+      border: 1.5px solid var(--green); padding: 6px 16px;
+      border-radius: 20px; font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .lang-btn:hover { background: #C8E6C9; }
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: 8px; background: none; border: none;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: white; border-bottom: 1px solid #e0e0e0;
+      padding: 20px 28px; flex-direction: column; gap: 18px;
+      z-index: 99; box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 16px; font-weight: 600; color: var(--text); padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
+    .mobile-menu a:hover { color: var(--green); text-decoration: none; }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .members-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: linear-gradient(150deg, rgba(27,94,32,0.85) 0%, rgba(21,101,192,0.78) 100%),
+                  url('IMG_8106.jpeg') center/cover no-repeat;
+      color: white; text-align: center;
+      padding: 70px 24px 80px;
+    }
+    .page-header h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 900; margin-bottom: 12px; }
+    .page-header p { font-size: 17px; opacity: 0.88; max-width: 560px; margin: 0 auto; }
+
+    /* ── SECTIONS ── */
+    .team-section { padding: 72px 24px; }
+    .team-section:nth-child(even) { background: var(--bg-alt); }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      text-align: center; margin-bottom: 48px;
+    }
+    .tag {
+      display: inline-block; background: var(--green-pale); color: var(--green);
+      font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px;
+      margin-bottom: 12px; letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .section-label h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 900; }
+    .section-label p { color: var(--text-light); font-size: 14px; margin-top: 6px; }
+
+    /* ── MEMBER GRID ── */
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 40px 24px;
+    }
+    .member { text-align: center; }
+    .member-photo {
+      width: 120px; height: 120px; border-radius: 50%;
+      object-fit: cover; margin: 0 auto 14px;
+      border: 3px solid var(--green-pale);
+      box-shadow: var(--shadow);
+      display: block;
+    }
+    .member-photo-placeholder {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: var(--green-pale); margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px;
+    }
+    .member-role {
+      font-size: 11px; font-weight: 700; color: var(--green);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .member-name-ja { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .member-name-en { font-size: 13px; color: var(--text-light); }
+
+    /* ── LANG TOGGLE ── */
+    [data-lang="en"] { display: none; }
+    body.en [data-lang="ja"] { display: none; }
+    body.en [data-lang="en"] { display: block; }
+    body.en span[data-lang="en"] { display: inline; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1a1a; color: #aaa; text-align: center;
+      padding: 44px 24px; font-size: 14px;
+    }
+    .footer-logo { font-weight: 800; color: white; font-size: 17px; margin-bottom: 18px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
+    .footer-links a { color: #aaa; }
+    .footer-links a:hover { color: white; }
+    .footer-social { display: flex; gap: 16px; justify-content: center; margin-bottom: 22px; }
+    .social-btn {
+      background: #333; color: #ccc; border-radius: 8px;
+      padding: 8px 18px; font-size: 13px; font-weight: 600;
+    }
+    .social-btn:hover { background: #444; color: white; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .members-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="IMG_2215.JPG" alt="Cycling for Charity" style="height:44px; width:auto;"/>
+  </a>
+  <div class="nav-links">
+    <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+    <a href="index.html#rides"><span data-lang="ja">ライド</span><span data-lang="en">Rides</span></a>
+    <a href="meet-the-team.html" class="active"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+    <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+    <a href="donate.html"><span data-lang="ja">寄付する</span><span data-lang="en">Donate</span></a>
+    <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="lang-btn" onclick="toggleLang()">EN / JA</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+  <a href="index.html#rides"><span data-lang="ja">ライド</span><span data-lang="en">Rides</span></a>
+  <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+  <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+  <a href="donate.html"><span data-lang="ja">寄付する</span><span data-lang="en">Donate</span></a>
+  <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+</div>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <h1 data-lang="ja">メンバー紹介</h1>
+  <h1 data-lang="en">Meet the Team</h1>
+  <p data-lang="ja">サイクリング・フォー・チャリティーを支えるメンバーをご紹介します。</p>
+  <p data-lang="en">The passionate people behind Cycling for Charity Japan.</p>
+</div>
+
+<!-- ── 役員 ── -->
+<section class="team-section">
+  <div class="section-inner">
+    <div class="section-label">
+      <div class="tag"><span data-lang="ja">役員</span><span data-lang="en">Board</span></div>
+      <h2 data-lang="ja">役員</h2>
+      <h2 data-lang="en">Board Members</h2>
+    </div>
+    <div class="members-grid">
+
+      <div class="member">
+        <img class="member-photo" src="yosuke.avif" alt="Yosuke Takahashi"/>
+        <div class="member-role"><span data-lang="ja">理事長</span><span data-lang="en">Chief Director</span></div>
+        <div class="member-name-ja" data-lang="ja">高橋 陽介</div>
+        <div class="member-name-en">Yosuke Takahashi</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="yokoo.avif" alt="Akihisa Yokoo"/>
+        <div class="member-role"><span data-lang="ja">副理事長</span><span data-lang="en">Vice Director</span></div>
+        <div class="member-name-ja" data-lang="ja">横尾 明久</div>
+        <div class="member-name-en">Akihisa Yokoo</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="gary.avif" alt="Gary Hung"/>
+        <div class="member-role"><span data-lang="ja">理事</span><span data-lang="en">Board Member</span></div>
+        <div class="member-name-ja" data-lang="ja">洪 啓棠</div>
+        <div class="member-name-en">Gary Hung</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="kentaro.avif" alt="Kentaro Yamamoto"/>
+        <div class="member-role"><span data-lang="ja">監事</span><span data-lang="en">Auditor</span></div>
+        <div class="member-name-ja" data-lang="ja">山本 健太郎</div>
+        <div class="member-name-en">Kentaro Yamamoto</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="atsushi.avif" alt="Atsushi Kamata"/>
+        <div class="member-role"><span data-lang="ja">監事</span><span data-lang="en">Auditor</span></div>
+        <div class="member-name-ja" data-lang="ja">鎌田 淳</div>
+        <div class="member-name-en">Atsushi Kamata</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── 正会員 ── -->
+<section class="team-section">
+  <div class="section-inner">
+    <div class="section-label">
+      <div class="tag"><span data-lang="ja">正会員</span><span data-lang="en">Regular Members</span></div>
+      <h2 data-lang="ja">正会員</h2>
+      <h2 data-lang="en">Regular Members</h2>
+    </div>
+    <div class="members-grid">
+
+      <div class="member">
+        <img class="member-photo" src="satoshi.avif" alt="Satoshi Fukuda"/>
+        <div class="member-name-ja" data-lang="ja">福田 さとし</div>
+        <div class="member-name-en">Satoshi Fukuda</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Keith.avif" alt="Keith Grogg"/>
+        <div class="member-name-ja" data-lang="ja">キース グロッグ</div>
+        <div class="member-name-en">Keith Grogg</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="RikaNishimura.avif" alt="Rika Nishimura"/>
+        <div class="member-name-ja" data-lang="ja">西村 りか</div>
+        <div class="member-name-en">Rika Nishimura</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="mikisan_edited.avif" alt="Miki Hitosugi"/>
+        <div class="member-name-ja" data-lang="ja">一杉 美樹</div>
+        <div class="member-name-en">Miki Hitosugi</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="suzuko_Takahashi.avif" alt="Suzuko Takahashi"/>
+        <div class="member-name-ja" data-lang="ja">高橋 寿々子</div>
+        <div class="member-name-en">Suzuko Takahashi</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Hiroshi Kanda_edited.avif" alt="Hiroshi Kanda"/>
+        <div class="member-name-ja" data-lang="ja">神田 弘志</div>
+        <div class="member-name-en">Hiroshi Kanda</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Junya Enomoto.avif" alt="Junya Enomoto"/>
+        <div class="member-name-ja" data-lang="ja">榎本 純也</div>
+        <div class="member-name-en">Junya Enomoto</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── 賛助会員 ── -->
+<section class="team-section">
+  <div class="section-inner">
+    <div class="section-label">
+      <div class="tag"><span data-lang="ja">賛助会員</span><span data-lang="en">Supporting Members</span></div>
+      <h2 data-lang="ja">賛助会員</h2>
+      <h2 data-lang="en">Supporting Members</h2>
+    </div>
+    <div class="members-grid">
+
+      <div class="member">
+        <img class="member-photo" src="Ueno.avif" alt="Akiko Ueno"/>
+        <div class="member-name-ja" data-lang="ja">上野 晶子</div>
+        <div class="member-name-en">Akiko Ueno</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="takamatsu.avif" alt="Hidehiko Takamatsu"/>
+        <div class="member-name-ja" data-lang="ja">髙松 英彦</div>
+        <div class="member-name-en">Hidehiko Takamatsu</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="jun.avif" alt="Jun Mochizuki"/>
+        <div class="member-name-ja" data-lang="ja">望月 淳</div>
+        <div class="member-name-en">Jun Mochizuki</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Hiroaki Nishida.avif" alt="Hiroaki Nishida"/>
+        <div class="member-name-ja" data-lang="ja">西田 宏昭</div>
+        <div class="member-name-en">Hiroaki Nishida</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Kaoru Yamamoto_edited.avif" alt="Kaoru Yamamoto"/>
+        <div class="member-name-ja" data-lang="ja">山本 薫</div>
+        <div class="member-name-en">Kaoru Yamamoto</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Reiko Sawada_edited.avif" alt="Reiko Sawada"/>
+        <div class="member-name-ja" data-lang="ja">澤田 玲子</div>
+        <div class="member-name-en">Reiko Sawada</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Naoko Konno.avif" alt="Naoko Konno"/>
+        <div class="member-name-ja" data-lang="ja">今野 奈生子</div>
+        <div class="member-name-en">Naoko Konno</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Mami Matsuura.avif" alt="Mami Matsuura"/>
+        <div class="member-name-ja" data-lang="ja">松浦 まみ</div>
+        <div class="member-name-en">Mami Matsuura</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Noriko Asai.avif" alt="Noriko Asai"/>
+        <div class="member-name-ja" data-lang="ja">浅井 宗子</div>
+        <div class="member-name-en">Noriko Asai</div>
+      </div>
+
+      <div class="member">
+        <img class="member-photo" src="Yumi Morita.avif" alt="Yumi Morita"/>
+        <div class="member-name-ja" data-lang="ja">森田 裕美</div>
+        <div class="member-name-en">Yumi Morita</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo"><img src="IMG_2215.JPG" alt="Cycling for Charity" style="height:36px;width:auto;vertical-align:middle;margin-right:10px;">Cycling for Charity</div>
+  <div class="footer-social">
+    <a class="social-btn" href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank">Facebook</a>
+    <a class="social-btn" href="https://www.instagram.com/cyclingforcharity/" target="_blank">Instagram</a>
+  </div>
+  <div class="footer-links">
+    <a href="index.html"><span data-lang="ja">ホーム</span><span data-lang="en">Home</span></a>
+    <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+    <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+    <a href="privacy.html"><span data-lang="ja">プライバシーポリシー</span><span data-lang="en">Privacy Policy</span></a>
+    <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+  </div>
+  <p>© 2025 NPO法人 サイクリング・フォー・チャリティー. <span data-lang="ja">全著作権所有。</span><span data-lang="en">All rights reserved.</span></p>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function toggleLang() {
+    document.body.classList.toggle('en');
+    const isEn = document.body.classList.contains('en');
+    document.documentElement.lang = isEn ? 'en' : 'ja';
+    localStorage.setItem('cfc_lang', isEn ? 'en' : 'ja');
+  }
+  if (localStorage.getItem('cfc_lang') === 'en') {
+    document.body.classList.add('en');
+    document.documentElement.lang = 'en';
+  }
+</script>
+</body>
+</html>

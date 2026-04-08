@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>寄付する | Cycling for Charity Japan</title>
+  <style>
+    :root {
+      --green:       #2E7D32;
+      --green-light: #43A047;
+      --green-pale:  #E8F5E9;
+      --orange:      #E65100;
+      --orange-light:#FF6D00;
+      --orange-pale: #FFF3E0;
+      --text:        #1a1a1a;
+      --text-light:  #666;
+      --bg:          #fff;
+      --bg-alt:      #f8f9f8;
+      --radius:      16px;
+      --shadow:      0 4px 24px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif; color: var(--text); background: var(--bg); line-height: 1.8; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e0e0e0;
+      padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; }
+    .nav-links a { color: var(--text-light); font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); text-decoration: none; }
+    .lang-btn {
+      background: var(--green-pale); color: var(--green);
+      border: 1.5px solid var(--green); padding: 6px 16px;
+      border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer;
+    }
+    .lang-btn:hover { background: #C8E6C9; }
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: 8px; background: none; border: none;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: white; border-bottom: 1px solid #e0e0e0;
+      padding: 20px 28px; flex-direction: column; gap: 18px;
+      z-index: 99; box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 16px; font-weight: 600; color: var(--text); padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
+    .mobile-menu a:hover { color: var(--green); text-decoration: none; }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: linear-gradient(150deg, rgba(27,94,32,0.85) 0%, rgba(230,81,0,0.75) 100%),
+                  url('IMG_8106.jpeg') center/cover no-repeat;
+      color: white; text-align: center; padding: 70px 24px 80px;
+    }
+    .page-header h1 { font-size: clamp(30px, 5vw, 52px); font-weight: 900; margin-bottom: 12px; }
+    .page-header p { font-size: 17px; opacity: 0.88; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── LAYOUT ── */
+    .donate-wrapper { max-width: 960px; margin: 0 auto; padding: 72px 24px 100px; }
+    .donate-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+    }
+    @media (max-width: 700px) {
+      .donate-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── SECTION LABELS ── */
+    .method-label {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px;
+    }
+    .method-num {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900; color: white;
+    }
+    .method-num.green { background: var(--green); }
+    .method-num.orange { background: var(--orange-light); }
+    .method-label h2 { font-size: 20px; font-weight: 900; }
+
+    /* ── DONORBOX CARD ── */
+    .donate-card {
+      background: var(--bg-alt); border-radius: var(--radius);
+      border: 1.5px solid #e0e0e0; overflow: hidden;
+    }
+    .donate-card-inner { padding: 28px; }
+    .donate-card p { font-size: 14px; color: var(--text-light); line-height: 1.8; margin-bottom: 20px; }
+    .donorbox-wrap {
+      display: flex; justify-content: center;
+      background: white; border-radius: 12px; padding: 8px;
+      border: 1px solid #eee;
+    }
+
+    /* ── BANK CARD ── */
+    .bank-table { width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 4px; }
+    .bank-table tr { border-bottom: 1px solid #eee; }
+    .bank-table td { padding: 12px 10px; vertical-align: top; }
+    .bank-table td:first-child { color: var(--text-light); font-weight: 600; width: 110px; white-space: nowrap; font-size: 13px; }
+    .bank-table td:last-child { color: var(--text); font-weight: 500; }
+    .copy-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700; color: var(--green);
+      background: var(--green-pale); border: 1px solid var(--green);
+      border-radius: 8px; padding: 3px 10px; cursor: pointer;
+      margin-left: 8px; vertical-align: middle; transition: background 0.2s;
+      user-select: none;
+    }
+    .copy-btn:hover { background: #C8E6C9; }
+    .bank-note {
+      margin-top: 20px; padding: 14px 16px;
+      background: var(--orange-pale); border-radius: 10px;
+      font-size: 13px; color: var(--orange); line-height: 1.7;
+    }
+
+    /* ── IMPACT ── */
+    .impact-section { background: var(--green); color: white; padding: 64px 24px; text-align: center; }
+    .impact-inner { max-width: 820px; margin: 0 auto; }
+    .impact-section h2 { font-size: clamp(22px, 4vw, 34px); font-weight: 900; margin-bottom: 36px; }
+    .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; }
+    .impact-item { background: rgba(255,255,255,0.12); border-radius: var(--radius); padding: 24px 20px; }
+    .impact-item .amount { font-size: 26px; font-weight: 900; margin-bottom: 6px; }
+    .impact-item p { font-size: 13px; opacity: 0.88; line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 44px 24px; font-size: 14px; }
+    .footer-logo { font-weight: 800; color: white; font-size: 17px; margin-bottom: 18px; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
+    .footer-links a { color: #aaa; }
+    .footer-links a:hover { color: white; }
+    .footer-social { display: flex; gap: 16px; justify-content: center; margin-bottom: 22px; }
+    .social-btn { background: #333; color: #ccc; border-radius: 8px; padding: 8px 18px; font-size: 13px; font-weight: 600; }
+    .social-btn:hover { background: #444; color: white; text-decoration: none; }
+
+    /* ── LANG ── */
+    [data-lang="en"] { display: none; }
+    body.lang-en [data-lang="ja"] { display: none; }
+    body.lang-en [data-lang="en"] { display: block; }
+    body.lang-en span[data-lang="en"],
+    body.lang-en td[data-lang="en"] { display: inline; }
+    h2, h3, p, td, div { display: revert; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="IMG_2215.JPG" alt="Cycling for Charity" style="height:44px; width:auto;"/>
+  </a>
+  <div class="nav-links">
+    <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+    <a href="index.html#rides"><span data-lang="ja">ライド</span><span data-lang="en">Rides</span></a>
+    <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+    <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+    <a href="donate.html" class="active"><span data-lang="ja">寄付する</span><span data-lang="en">Donate</span></a>
+    <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="lang-btn" onclick="toggleLang()">EN / JA</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+  <a href="index.html#rides"><span data-lang="ja">ライド</span><span data-lang="en">Rides</span></a>
+  <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+  <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+  <a href="donate.html"><span data-lang="ja">寄付する</span><span data-lang="en">Donate</span></a>
+  <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+</div>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <h1 data-lang="ja">💚 寄付する</h1>
+  <h1 data-lang="en">💚 Make a Donation</h1>
+  <p data-lang="ja">あなたの寄付が、子どもたちのライドへの参加を支えます。<br/>一人ひとりの支援が、大きな変化を生みます。</p>
+  <p data-lang="en">Your donation helps young challengers join the ride.<br/>Every contribution, big or small, makes a real difference.</p>
+</div>
+
+<!-- ── DONATE SECTION ── -->
+<div class="donate-wrapper">
+  <div class="donate-grid">
+
+    <!-- METHOD 1: DONORBOX -->
+    <div>
+      <div class="method-label">
+        <div class="method-num orange">1</div>
+        <h2><span data-lang="ja">オンライン寄付（クレジットカード）</span><span data-lang="en">Online Donation (Card)</span></h2>
+      </div>
+      <div class="donate-card">
+        <div class="donate-card-inner">
+          <p data-lang="ja">クレジットカードまたはPayPalでご寄付いただけます。Visa・Mastercard・AmEx対応。一回限り・毎月の定期寄付どちらも可能です。</p>
+          <p data-lang="en">Donate by credit card or PayPal. Visa, Mastercard, and AmEx accepted. One-time or monthly recurring donations available.</p>
+        </div>
+        <div class="donorbox-wrap">
+          <script src="https://donorbox.org/widget.js" paypalExpress="false"></script>
+          <iframe src="https://donorbox.org/embed/cycling-for-charity"
+            name="donorbox"
+            allowpaymentrequest="allowpaymentrequest"
+            seamless="seamless"
+            frameborder="0"
+            scrolling="no"
+            height="900px"
+            width="100%"
+            style="max-width:500px; min-width:250px; max-height:none !important;">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- METHOD 2: BANK TRANSFER -->
+    <div>
+      <div class="method-label">
+        <div class="method-num green">2</div>
+        <h2><span data-lang="ja">銀行振込</span><span data-lang="en">Bank Transfer</span></h2>
+      </div>
+      <div class="donate-card">
+        <div class="donate-card-inner">
+          <p data-lang="ja">以下の口座にお振込みください。振込後、メールにてお知らせいただけると確認がスムーズです。</p>
+          <p data-lang="en">Please transfer to the account below. After transferring, kindly email us so we can confirm receipt.</p>
+          <table class="bank-table">
+            <tr>
+              <td><span data-lang="ja">銀行名</span><span data-lang="en">Bank</span></td>
+              <td>楽天銀行（Rakuten Bank）</td>
+            </tr>
+            <tr>
+              <td><span data-lang="ja">支店名</span><span data-lang="en">Branch</span></td>
+              <td>
+                <span data-lang="ja">第二営業支店</span><span data-lang="en">Dai-ni Branch</span>
+                &nbsp;（252）
+              </td>
+            </tr>
+            <tr>
+              <td><span data-lang="ja">口座種別</span><span data-lang="en">Type</span></td>
+              <td><span data-lang="ja">普通預金</span><span data-lang="en">Savings</span></td>
+            </tr>
+            <tr>
+              <td><span data-lang="ja">口座番号</span><span data-lang="en">Account No.</span></td>
+              <td>
+                7921638
+                <span class="copy-btn" onclick="copyText('7921638', this)">コピー</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span data-lang="ja">口座名義</span><span data-lang="en">Name</span></td>
+              <td>
+                <span data-lang="ja">トクヒ）サイクリングフォーチャリティー</span>
+                <span data-lang="en">TOKUHI) CYCLING FOR CHARITY</span>
+              </td>
+            </tr>
+          </table>
+          <div class="bank-note">
+            <span data-lang="ja">📧 振込後は <a href="mailto:cyclingforcharityjapan@gmail.com" style="color:var(--orange);font-weight:700;">cyclingforcharityjapan@gmail.com</a> までご連絡ください。領収書が必要な方もメールにてお知らせください。<br/><br/>⚠️ 当法人は認定NPO法人ではないため、ご寄付は税制上の寄付金控除の対象となりません。あらかじめご了承ください。</span>
+            <span data-lang="en">📧 After transferring, please email <a href="mailto:cyclingforcharityjapan@gmail.com" style="color:var(--orange);font-weight:700;">cyclingforcharityjapan@gmail.com</a>. Receipts available on request.<br/><br/>⚠️ Please note that as we are not a certified NPO (認定NPO法人), donations to our organization are not tax deductible.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── IMPACT ── -->
+<section class="impact-section">
+  <div class="impact-inner">
+    <h2 data-lang="ja">あなたの寄付でできること</h2>
+    <h2 data-lang="en">What Your Donation Makes Possible</h2>
+    <div class="impact-grid">
+      <div class="impact-item">
+        <div class="amount">¥3,000</div>
+        <p data-lang="ja">チャレンジャー1名の練習会参加費をサポート</p>
+        <p data-lang="en">Covers one challenger's practice ride participation fee</p>
+      </div>
+      <div class="impact-item">
+        <div class="amount">¥10,000</div>
+        <p data-lang="ja">チャレンジャー1名のライド当日の交通費・食事代をサポート</p>
+        <p data-lang="en">Covers transport and meals for one challenger on ride day</p>
+      </div>
+      <div class="impact-item">
+        <div class="amount">¥30,000</div>
+        <p data-lang="ja">チャレンジャー1名の1泊2日ライドの全費用をサポート</p>
+        <p data-lang="en">Fully sponsors one challenger for a 2-day overnight ride</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo"><img src="IMG_2215.JPG" alt="Cycling for Charity" style="height:36px;width:auto;vertical-align:middle;margin-right:10px;">Cycling for Charity</div>
+  <div class="footer-social">
+    <a class="social-btn" href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank">Facebook</a>
+    <a class="social-btn" href="https://www.instagram.com/cyclingforcharity/" target="_blank">Instagram</a>
+  </div>
+  <div class="footer-links">
+    <a href="index.html"><span data-lang="ja">ホーム</span><span data-lang="en">Home</span></a>
+    <a href="about.html"><span data-lang="ja">団体概要</span><span data-lang="en">About</span></a>
+    <a href="meet-the-team.html"><span data-lang="ja">メンバー</span><span data-lang="en">Team</span></a>
+    <a href="get-involved.html"><span data-lang="ja">参加する</span><span data-lang="en">Get Involved</span></a>
+    <a href="donate.html"><span data-lang="ja">寄付する</span><span data-lang="en">Donate</span></a>
+    <a href="privacy.html"><span data-lang="ja">プライバシーポリシー</span><span data-lang="en">Privacy Policy</span></a>
+    <a href="mailto:cyclingforcharityjapan@gmail.com"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
+  </div>
+  <p>© 2025 NPO法人 サイクリング・フォー・チャリティー. All rights reserved.</p>
+</footer>
+
+<script>
+  const stored = localStorage.getItem('cfc_lang');
+  if (stored === 'en') document.body.classList.add('lang-en');
+
+  function toggleLang() {
+    const isEn = document.body.classList.toggle('lang-en');
+    localStorage.setItem('cfc_lang', isEn ? 'en' : 'ja');
+  }
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ コピー済み';
+      setTimeout(() => btn.textContent = 'コピー', 2000);
+    });
+  }
+</script>
+</body>
+</html>
