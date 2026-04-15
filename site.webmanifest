@@ -1,0 +1,11 @@
+{
+  "name": "Cycling for Charity",
+  "short_name": "CFC Japan",
+  "icons": [
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "start_url": "/cyclingforcharity/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2E7D32"
+}
