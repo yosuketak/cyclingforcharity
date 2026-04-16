@@ -202,17 +202,25 @@
     }
 
     /* ── GALLERY ── */
+    .year-block { margin-bottom: 48px; }
+    .year-label {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 14px;
+    }
+    .year-label span {
+      font-size: 22px; font-weight: 900; color: var(--green);
+    }
+    .year-label::after {
+      content: ''; flex: 1; height: 2px; background: var(--green-pale);
+    }
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
     .gallery-grid img {
-      width: 100%; height: 240px; object-fit: cover;
+      width: 100%; height: 200px; object-fit: cover;
       border-radius: var(--radius); transition: transform 0.2s;
-    }
-    .gallery-grid img:first-child {
-      grid-column: span 2; height: 280px;
     }
     .gallery-grid img:hover { transform: scale(1.02); }
     @media (max-width: 600px) {
@@ -718,13 +726,81 @@
     <h2 class="section-title" data-lang="en">Ride Moments</h2>
     <p class="section-sub" data-lang="ja">チャレンジャーとガイドが共に走った、忘れられない瞬間たち。</p>
     <p class="section-sub" data-lang="en">Unforgettable moments shared by challengers and guides on the road.</p>
-    <div class="gallery-grid">
-      <img src="IMG_5918.JPG" alt="Cycling for Charity group with banner"/>
-      <img src="IMG_7878.jpeg" alt="Challengers on the road"/>
-      <img src="IMG_9365.JPG" alt="Team fist bump celebration"/>
-      <img src="IMG_5855.jpeg" alt="Pre-ride briefing"/>
-      <img src="IMG_1093.jpeg" alt="Riding through rice fields"/>
-      <img src="IMG_5867.jpeg" alt="Group ride along the river"/>
+    <!-- 2025 -->
+    <div class="year-block">
+      <div class="year-label"><span>2025</span></div>
+      <div class="gallery-grid">
+        <img src="IMG_5918.JPG" alt="2025 Karuizawa group"/>
+        <img src="IMG_0651.JPG" alt="2025 Shimanami"/>
+        <img src="IMG_7878.jpeg" alt="2025 ride selfie"/>
+      </div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="year-block">
+      <div class="year-label"><span>2024</span></div>
+      <div class="gallery-grid">
+        <img src="IMG_4148.jpeg" alt="2024 ride"/>
+        <img src="IMG_4566.JPG" alt="2024 guide with child"/>
+        <img src="IMG_5855.jpeg" alt="2024 pre-ride briefing"/>
+      </div>
+    </div>
+
+    <!-- 2023 -->
+    <div class="year-block">
+      <div class="year-label"><span>2023</span></div>
+      <div class="gallery-grid">
+        <img src="IMG_1699.jpeg" alt="2023 riders with local children"/>
+        <img src="IMG_7832.JPG" alt="2023 Miyajima shrine"/>
+        <img src="IMG_1093.jpeg" alt="2023 rice fields"/>
+      </div>
+    </div>
+
+    <!-- 2019 -->
+    <div class="year-block">
+      <div class="year-label"><span>2019</span></div>
+      <div class="gallery-grid">
+        <img src="IMG_9365.JPG" alt="2019 team fist bump"/>
+        <img src="IMG_5867.jpeg" alt="2019 river ride"/>
+        <img src="IMG_2465.JPG" alt="2019 open road"/>
+      </div>
+    </div>
+
+    <!-- 2018 -->
+    <div class="year-block">
+      <div class="year-label"><span>2018</span></div>
+      <div class="gallery-grid">
+        <img src="0N5A6794.JPG" alt="2018 group riding"/>
+        <img src="0N5A7397.JPG" alt="2018 kids and adults riding"/>
+        <img src="0N5A7720.JPG" alt="2018 support car team"/>
+      </div>
+    </div>
+
+    <!-- 2017 -->
+    <div class="year-block">
+      <div class="year-label"><span>2017</span></div>
+      <div class="gallery-grid">
+        <img src="NL3A6232.JPG" alt="2017 team jump"/>
+        <img src="IMG_2502.JPG" alt="2017 kids event"/>
+        <img src="support-car-2017.jpg" alt="2017 support car team"/>
+      </div>
+    </div>
+
+    <!-- 2016 -->
+    <div class="year-block">
+      <div class="year-label"><span>2016</span></div>
+      <div class="gallery-grid">
+        <img src="IMG_1026.JPG" alt="2016 Shimanami beach"/>
+        <img src="IMG_6575.JPG" alt="2016 riders at hotel"/>
+      </div>
+    </div>
+
+    <!-- 2015 -->
+    <div class="year-block">
+      <div class="year-label"><span>2015</span></div>
+      <div class="gallery-grid">
+        <img src="IMG_1390.JPG" alt="2015 first ride"/>
+      </div>
     </div>
   </div>
 </section>
