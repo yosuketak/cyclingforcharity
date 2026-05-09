@@ -234,7 +234,33 @@
     <h2>10. 委託先の監督</h2>
     <p>個人情報の取扱いの全部または一部を委託する場合、当法人は、委託先と機密保持を含む契約を締結し、または委託先に対し当法人が定める約款への合意を求め、委託先において個人情報の安全管理が図られるよう、必要かつ適切な監督を行います。</p>
 
-    <h2>11. 第三者提供の制限</h2>
+    <h2>11. アプリにおける個人情報の取扱い</h2>
+
+    <p><strong>① ログイン方法（Google OAuth）</strong><br/>
+    当法人のアプリは、Googleアカウントによるログイン（Google OAuth）を採用しています。取得する情報は、お名前・メールアドレス・プロフィール写真のURLのみです。Googleのパスワードは、当法人のサーバーには一切保存されません。</p>
+
+    <p><strong>② データ保存先（Supabase / AWS東京リージョン）</strong><br/>
+    アプリのデータはすべて、Supabase（インフラはAmazon Web Services 東京リージョン：ap-northeast-1）に保存されます。Supabaseは当法人のデータ保存に関する副処理者です。</p>
+
+    <p><strong>③ AI処理（Anthropic Claude）</strong><br/>
+    アプリ内のサポートチャット・翻訳・領収書のテキスト認識（OCR）には、AnthropicのAI「Claude」を利用しています。これらの機能を使用すると、メッセージ内容や領収書の画像がAnthropicのAPIに送信されます。Anthropicのプライバシーポリシーが適用されます：<a href="https://www.anthropic.com/privacy" target="_blank">https://www.anthropic.com/privacy</a></p>
+
+    <p><strong>④ 領収書の写真</strong><br/>
+    経費申請のために領収書の写真をアップロードした場合、その写真はSupabase Storageに保存され、AIによるテキスト認識処理が行われます。写真はいつでも削除できます。</p>
+
+    <p><strong>⑤ 緊急連絡先情報</strong><br/>
+    参加者には、緊急時の連絡先（氏名・電話番号・続柄）を登録していただきます。この情報は、イベント当日の安全管理を目的として収集するものであり、イベントリーダーおよび管理者のみがアクセスできます。</p>
+
+    <p><strong>⑥ プッシュ通知のデバイストークン</strong><br/>
+    通知の許可を与えた場合、デバイストークンをSupabaseに保存し、イベントに関する通知の送信に使用します。通知を無効にした場合、トークンは削除されます。</p>
+
+    <p><strong>⑦ オフライン・ローカルストレージ</strong><br/>
+    オフラインでもアクセスできるよう、緊急連絡先データがデバイスのローカルストレージに一時的にキャッシュされる場合があります。このデータはデバイス上に残ることをご了承ください。</p>
+
+    <p><strong>⑧ データの保持と削除</strong><br/>
+    アカウントおよびイベント参加データは、利用期間中保持されます。削除をご希望の方は <a href="mailto:yosuke@cyclingforcharityjapan.com">yosuke@cyclingforcharityjapan.com</a> までご連絡ください。法令により保持が義務付けられている場合を除き、リクエストから30日以内に個人情報を削除します。</p>
+
+    <h2>12. 第三者提供の制限</h2>
     <p>当法人は、次に掲げる場合を除くほか、あらかじめご本人の同意を得ないで、個人情報を第三者に提供しません。</p>
     <ul>
       <li>法令に基づく場合</li>
@@ -247,14 +273,14 @@
       <li>個人情報を特定の者との間で共同して利用する場合であって、その旨ならびに共同して利用される個人情報の項目、共同して利用する者の範囲、利用する者の利用目的および当該個人情報の管理について責任を有する者の氏名または名称について、あらかじめご本人に通知し、またはご本人が容易に知り得る状態に置いているとき</li>
     </ul>
 
-    <h2>12. 個人情報に関する事項の公表等</h2>
+    <h2>13. 個人情報に関する事項の公表等</h2>
     <p>当法人は、個人情報に関する次に掲げる事項について、ご本人の知り得る状態に置き、ご本人の求めに応じて遅滞なく回答します。</p>
     <ul>
       <li>個人情報の利用目的（ただし、個人情報の保護に関する法律において、その義務がないと規定されるものは除きます。回答しない決定をした場合、当法人は、ご本人に対し、遅滞なくその旨を通知します。）</li>
       <li>個人情報に関するお問合わせ窓口</li>
     </ul>
 
-    <h2>13. 個人情報の開示</h2>
+    <h2>14. 個人情報の開示</h2>
     <p>当法人は、ご本人から個人情報の開示を求められたときは、ご本人に対し、遅滞なく個人情報を開示します。ただし、開示することにより次のいずれかに該当する場合には、その全部または一部を開示しないこともあり、開示しない決定をした場合には、その旨を遅滞なく通知します。なお、アクセスログなどの個人情報以外の情報については、原則として開示しません。</p>
     <ul>
       <li>ご本人または第三者の生命、身体、財産その他の権利利益を害するおそれがある場合</li>
@@ -262,7 +288,7 @@
       <li>他の法令に違反することとなる場合</li>
     </ul>
 
-    <h2>14. 個人情報の訂正等</h2>
+    <h2>15. 個人情報の訂正等</h2>
     <p>当法人は、ご本人から、個人情報が真実でないことを理由に、内容の訂正、追加または削除（以下「訂正等」といいます。）を求められた場合には、他の法令の規定により特別の手続が定められている場合を除き、利用目的の達成に必要な範囲内において、遅滞なく必要な調査を行い、その結果に基づいて、個人情報の内容の訂正等を行い、その旨をご本人に通知します。</p>
 
     <h2>16. 個人情報の利用停止等</h2>
@@ -272,7 +298,7 @@
     <div class="contact-box">
       <h3>個人情報に関するお問合わせ窓口</h3>
       <p>特定非営利活動法人サイクリング・フォー・チャリティ<br/>
-      メール：<a href="mailto:cyclingforcharityjapan@gmail.com">cyclingforcharityjapan@gmail.com</a></p>
+      メール：<a href="mailto:yosuke@cyclingforcharityjapan.com">yosuke@cyclingforcharityjapan.com</a></p>
     </div>
   </div>
 
@@ -349,7 +375,33 @@
     <h2>10. Supervision of Contractors</h2>
     <p>When entrusting all or part of the handling of personal information to a contractor, the Organization will enter into contracts including confidentiality provisions, or require agreement to its terms, and will exercise necessary and appropriate supervision to ensure proper security management by the contractor.</p>
 
-    <h2>11. Restrictions on Third-Party Disclosure</h2>
+    <h2>11. App-Specific Data Practices</h2>
+
+    <p><strong>① Sign-In Method (Google OAuth)</strong><br/>
+    Our app uses Google OAuth for sign-in. We receive only your name, email address, and profile photo URL. Your Google password is never stored by us.</p>
+
+    <p><strong>② Data Storage (Supabase / AWS Tokyo Region)</strong><br/>
+    All app data is stored in Supabase, running on Amazon Web Services in the Tokyo region (ap-northeast-1). Supabase is our sub-processor for data storage.</p>
+
+    <p><strong>③ AI Processing (Anthropic Claude)</strong><br/>
+    The app uses Anthropic's Claude AI for in-app support chat, translation, and receipt text recognition (OCR). When you use these features, message content and/or receipt photo content is sent to Anthropic's API. Anthropic's privacy policy applies: <a href="https://www.anthropic.com/privacy" target="_blank">https://www.anthropic.com/privacy</a></p>
+
+    <p><strong>④ Receipt Photos</strong><br/>
+    When you upload receipt photos for expense claims, those photos are stored in Supabase Storage and processed by AI for text recognition. You can delete your photos at any time.</p>
+
+    <p><strong>⑤ Emergency Contact Information</strong><br/>
+    Participants are asked to provide an emergency contact (name, phone number, and relationship). This information is collected solely for safety purposes on event days and is accessible only to event leaders and administrators.</p>
+
+    <p><strong>⑥ Push Notification Device Tokens</strong><br/>
+    If you grant notification permission, your device token is stored in Supabase to send event-related notifications. The token is deleted if you disable notifications.</p>
+
+    <p><strong>⑦ Offline / Local Storage</strong><br/>
+    Emergency contact data may be temporarily cached in your device's local storage to allow offline access. Please be aware that this data persists on your device.</p>
+
+    <p><strong>⑧ Data Retention and Deletion</strong><br/>
+    Account and event participation data is retained while you are an active user. To request deletion, please contact <a href="mailto:yosuke@cyclingforcharityjapan.com">yosuke@cyclingforcharityjapan.com</a>. We will delete your personal data within 30 days of request, except where retention is required by law.</p>
+
+    <h2>12. Restrictions on Third-Party Disclosure</h2>
     <p>The Organization will not provide personal information to third parties without prior consent, except in the following cases:</p>
     <ul>
       <li>When required by law</li>
@@ -362,14 +414,14 @@
       <li>When personal information is jointly used with specific parties, and the scope, purpose, and responsible party have been notified to the individual in advance or made easily accessible</li>
     </ul>
 
-    <h2>12. Disclosure of Matters Relating to Personal Information</h2>
+    <h2>13. Disclosure of Matters Relating to Personal Information</h2>
     <p>The Organization will make the following matters available to individuals and respond without delay upon request:</p>
     <ul>
       <li>The purpose of use of personal information (excluding cases where the Act on the Protection of Personal Information does not require disclosure; if the Organization decides not to respond, it will notify the individual promptly)</li>
       <li>Contact point for inquiries regarding personal information</li>
     </ul>
 
-    <h2>13. Disclosure of Personal Information</h2>
+    <h2>14. Disclosure of Personal Information</h2>
     <p>When an individual requests disclosure of their personal information, the Organization will disclose it without delay. However, all or part may be withheld if disclosure falls under any of the following, and the individual will be notified promptly. Non-personal information such as access logs will generally not be disclosed.</p>
     <ul>
       <li>When disclosure may harm the life, body, property, or other rights of the individual or a third party</li>
@@ -377,7 +429,7 @@
       <li>When disclosure would violate other laws</li>
     </ul>
 
-    <h2>14. Correction of Personal Information</h2>
+    <h2>15. Correction of Personal Information</h2>
     <p>If an individual requests correction, addition, or deletion of personal information on the grounds that it is inaccurate, the Organization will conduct the necessary investigation without delay (except where special procedures are prescribed by law) and make corrections based on the results, notifying the individual accordingly.</p>
 
     <h2>16. Suspension of Use of Personal Information</h2>
@@ -387,7 +439,7 @@
     <div class="contact-box">
       <h3>Inquiries Regarding Personal Information</h3>
       <p>NPO Cycling for Charity Japan<br/>
-      Email: <a href="mailto:cyclingforcharityjapan@gmail.com">cyclingforcharityjapan@gmail.com</a></p>
+      Email: <a href="mailto:yosuke@cyclingforcharityjapan.com">yosuke@cyclingforcharityjapan.com</a></p>
     </div>
   </div>
 
