@@ -6,6 +6,13 @@
   <link rel="icon" href="apple-touch-icon.png" type="image/png"/>
   <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
   <link rel="manifest" href="site.webmanifest"/>
+  <meta name="description" content="Cycling for Charity Japanへの参加方法。ライダー・チャレンジャー・ボランティア・スポンサーとしてご参加いただけます。Get involved — join as a rider, challenger, volunteer, or sponsor."/>
+  <meta property="og:title" content="参加する | Cycling for Charity Japan"/>
+  <meta property="og:description" content="Join Cycling for Charity Japan as a rider, challenger, volunteer, or sponsor."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://www.cyclingforcharityjapan.com/hero-2025-shimanami.jpg"/>
+  <meta property="og:url" content="https://www.cyclingforcharityjapan.com/get-involved.html"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <title>参加する | Cycling for Charity Japan</title>
   <style>
     :root {
@@ -384,12 +391,74 @@
   </a>
 </section>
 
+<!-- CONTACT FORM -->
+<section style="background:#f8f9f8; padding:64px 24px;">
+  <div style="max-width:600px; margin:0 auto;">
+    <h2 style="font-size:clamp(22px,4vw,32px); font-weight:900; color:#2E7D32; margin-bottom:8px; text-align:center;">
+      <span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact Us</span>
+    </h2>
+    <p style="text-align:center; color:#666; margin-bottom:32px; font-size:15px;">
+      <span data-lang="ja">ご質問・ご参加についてはお気軽にご連絡ください。</span>
+      <span data-lang="en">Have a question or want to get involved? Send us a message.</span>
+    </p>
+    <form action="https://formspree.io/f/xqaabbcc" method="POST" style="display:flex; flex-direction:column; gap:16px;">
+      <input type="hidden" name="_subject" value="CFC Website Contact Form">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div>
+          <label style="font-size:13px; font-weight:600; color:#1a1a1a; display:block; margin-bottom:6px;">
+            <span data-lang="ja">お名前 *</span><span data-lang="en">Name *</span>
+          </label>
+          <input type="text" name="name" required
+            style="width:100%; padding:12px 14px; border:1.5px solid #ddd; border-radius:10px; font-size:15px; outline:none; font-family:inherit;"
+            placeholder="Yosuke Takahashi">
+        </div>
+        <div>
+          <label style="font-size:13px; font-weight:600; color:#1a1a1a; display:block; margin-bottom:6px;">
+            <span data-lang="ja">メールアドレス *</span><span data-lang="en">Email *</span>
+          </label>
+          <input type="email" name="email" required
+            style="width:100%; padding:12px 14px; border:1.5px solid #ddd; border-radius:10px; font-size:15px; outline:none; font-family:inherit;"
+            placeholder="you@example.com">
+        </div>
+      </div>
+      <div>
+        <label style="font-size:13px; font-weight:600; color:#1a1a1a; display:block; margin-bottom:6px;">
+          <span data-lang="ja">件名</span><span data-lang="en">Subject</span>
+        </label>
+        <select name="subject" style="width:100%; padding:12px 14px; border:1.5px solid #ddd; border-radius:10px; font-size:15px; outline:none; font-family:inherit; background:white; color:#1a1a1a;">
+          <option value="rider"><span>ライダー参加 / Join as Rider</span></option>
+          <option value="challenger">チャレンジャー / Challenger</option>
+          <option value="volunteer">ボランティア / Volunteer</option>
+          <option value="sponsor">スポンサー / Sponsor</option>
+          <option value="other">その他 / Other</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:13px; font-weight:600; color:#1a1a1a; display:block; margin-bottom:6px;">
+          <span data-lang="ja">メッセージ *</span><span data-lang="en">Message *</span>
+        </label>
+        <textarea name="message" required rows="5"
+          style="width:100%; padding:12px 14px; border:1.5px solid #ddd; border-radius:10px; font-size:15px; outline:none; font-family:inherit; resize:vertical;"
+          placeholder="..."></textarea>
+      </div>
+      <button type="submit"
+        style="background:#2E7D32; color:white; border:none; padding:14px 32px; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer; align-self:flex-start; font-family:inherit;">
+        <span data-lang="ja">送信する</span><span data-lang="en">Send Message</span>
+      </button>
+      <p style="font-size:12px; color:#999;">
+        <span data-lang="ja">または直接メール: </span><span data-lang="en">Or email us directly: </span>
+        <a href="mailto:yosuke@cyclingforcharityjapan.com" style="color:#2E7D32;">yosuke@cyclingforcharityjapan.com</a>
+      </p>
+    </form>
+  </div>
+</section>
+
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-logo"><img src="IMG_2215.JPG" alt="Cycling for Charity" style="height:36px;width:auto;vertical-align:middle;margin-right:10px;">Cycling for Charity</div>
   <div class="footer-social">
-    <a class="social-btn" href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank">Facebook</a>
-    <a class="social-btn" href="https://www.instagram.com/cyclingforcharity/" target="_blank">Instagram</a>
+    <a class="social-btn" href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a class="social-btn" href="https://www.instagram.com/cyclingforcharity/" target="_blank" rel="noopener noreferrer">Instagram</a>
   </div>
   <div class="footer-links">
     <a href="index.html"><span data-lang="ja">ホーム</span><span data-lang="en">Home</span></a>
