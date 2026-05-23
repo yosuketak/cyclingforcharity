@@ -1228,10 +1228,22 @@
     document.documentElement.lang = isEn ? 'en' : 'ja';
     localStorage.setItem('cfc_lang', isEn ? 'en' : 'ja');
   }
-  if (localStorage.getItem('cfc_lang') === 'en') {
+
+  // Language priority: 1) saved user preference, 2) browser language, 3) default Japanese
+  const saved = localStorage.getItem('cfc_lang');
+  if (saved === 'en') {
     document.body.classList.add('en');
     document.documentElement.lang = 'en';
+  } else if (!saved) {
+    // No saved preference — use browser language
+    const browserLang = navigator.language || navigator.userLanguage || 'ja';
+    if (!browserLang.toLowerCase().startsWith('ja')) {
+      document.body.classList.add('en');
+      document.documentElement.lang = 'en';
+    }
   }
+  // If saved === 'ja', or browser is Japanese: keep default Japanese (no class needed)
+
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
   }

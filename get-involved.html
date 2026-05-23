@@ -480,12 +480,16 @@
 </footer>
 
 <script>
-  const stored = localStorage.getItem('cfc_lang');
-  if (stored === 'en') document.body.classList.add('lang-en');
-
   function toggleLang() {
     const isEn = document.body.classList.toggle('lang-en');
     localStorage.setItem('cfc_lang', isEn ? 'en' : 'ja');
+  }
+  const stored = localStorage.getItem('cfc_lang');
+  if (stored === 'en') {
+    document.body.classList.add('lang-en');
+  } else if (!stored) {
+    const browserLang = navigator.language || navigator.userLanguage || 'ja';
+    if (!browserLang.toLowerCase().startsWith('ja')) document.body.classList.add('lang-en');
   }
 
   function toggleMenu() {

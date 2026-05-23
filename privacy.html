@@ -482,7 +482,12 @@
 
 <script>
   const stored = localStorage.getItem('cfc_lang');
-  if (stored === 'en') document.body.classList.add('lang-en');
+  if (stored === 'en') {
+    document.body.classList.add('lang-en');
+  } else if (!stored) {
+    const browserLang = navigator.language || navigator.userLanguage || 'ja';
+    if (!browserLang.toLowerCase().startsWith('ja')) document.body.classList.add('lang-en');
+  }
 
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function toggleLang() {

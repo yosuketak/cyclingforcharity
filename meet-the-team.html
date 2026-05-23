@@ -400,9 +400,16 @@
     document.documentElement.lang = isEn ? 'en' : 'ja';
     localStorage.setItem('cfc_lang', isEn ? 'en' : 'ja');
   }
-  if (localStorage.getItem('cfc_lang') === 'en') {
+  const _saved = localStorage.getItem('cfc_lang');
+  if (_saved === 'en') {
     document.body.classList.add('en');
     document.documentElement.lang = 'en';
+  } else if (!_saved) {
+    const browserLang = navigator.language || navigator.userLanguage || 'ja';
+    if (!browserLang.toLowerCase().startsWith('ja')) {
+      document.body.classList.add('en');
+      document.documentElement.lang = 'en';
+    }
   }
 </script>
 </body>
