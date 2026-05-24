@@ -231,10 +231,13 @@
     }
 
     /* ── GALLERY ── */
-    .year-block { margin-bottom: 48px; }
+    .year-block { margin-bottom: 32px; }
     .year-label {
       display: flex; align-items: center; gap: 16px;
-      margin-bottom: 14px;
+      margin-bottom: 0;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 0;
     }
     .year-label span {
       font-size: 22px; font-weight: 900; color: var(--green);
@@ -242,14 +245,22 @@
     .year-label::after {
       content: ''; flex: 1; height: 2px; background: var(--green-pale);
     }
+    .year-toggle-icon {
+      font-size: 13px; color: var(--green); transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+    .year-block.open .year-toggle-icon { transform: rotate(90deg); }
     .gallery-grid {
-      display: grid;
+      display: none;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
+      margin-top: 14px;
     }
+    .year-block.open .gallery-grid { display: grid; }
     .gallery-grid img {
       width: 100%; height: 200px; object-fit: cover;
       border-radius: var(--radius); transition: transform 0.2s;
+      background: #e8e8e8;
     }
     .gallery-grid img:hover { transform: scale(1.02); }
     @media (max-width: 600px) {
@@ -1099,172 +1110,208 @@
     <h2 class="section-title" data-lang="en">Ride Moments</h2>
     <p class="section-sub" data-lang="ja">チャレンジャーとガイドが共に走った、忘れられない瞬間たち。</p>
     <p class="section-sub" data-lang="en">Unforgettable moments shared by challengers and guides on the road.</p>
-    <!-- 2026 -->
-    <div class="year-block">
-      <div class="year-label"><span>2026</span></div>
+    <!-- 2026 — open by default -->
+    <div class="year-block open">
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2026</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="2026-alps-group-lake.jpg" alt="2026 North Alps — cyclists at lake with snow-capped Alps"/>
-        <img loading="lazy" src="2026-alps-riding-peak.jpg" alt="2026 North Alps — riding toward the peak"/>
-        <img loading="lazy" src="2026-alps-group-ride.jpg" alt="2026 North Alps — group riding with Alps panorama"/>
-        <img loading="lazy" src="2026-alps-bridge.jpg" alt="2026 North Alps — cyclist on bridge with Alps backdrop"/>
-        <img loading="lazy" src="2026-alps-river.jpg" alt="2026 North Alps — turquoise river and snow-capped Alps"/>
-        <img loading="lazy" src="2026-alps-reflection.jpg" alt="2026 North Alps — Alps reflected in rice paddy"/>
-        <img loading="lazy" src="2026-sakura-ride.jpg" alt="2026 cherry blossom ride — 春のライド"/>
-        <img loading="lazy" src="2026-sakura-group.jpg" alt="2026 spring group — 春のライド"/>
+        <img src="2026-alps-group-lake.jpg" alt="2026 North Alps — cyclists at lake with snow-capped Alps"/>
+        <img src="2026-alps-riding-peak.jpg" alt="2026 North Alps — riding toward the peak"/>
+        <img src="2026-alps-group-ride.jpg" alt="2026 North Alps — group riding with Alps panorama"/>
+        <img src="2026-alps-bridge.jpg" alt="2026 North Alps — cyclist on bridge with Alps backdrop"/>
+        <img src="2026-alps-river.jpg" alt="2026 North Alps — turquoise river and snow-capped Alps"/>
+        <img src="2026-alps-reflection.jpg" alt="2026 North Alps — Alps reflected in rice paddy"/>
+        <img src="2026-sakura-ride.jpg" alt="2026 cherry blossom ride — 春のライド"/>
+        <img src="2026-sakura-group.jpg" alt="2026 spring group — 春のライド"/>
       </div>
     </div>
 
     <!-- 2025 -->
     <div class="year-block">
-      <div class="year-label"><span>2025</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2025</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="IMG_5918.JPG" alt="2025 Karuizawa group"/>
-        <img loading="lazy" src="IMG_0651.JPG" alt="2025 Shimanami bridge"/>
-        <img loading="lazy" src="IMG_0385.JPG" alt="2025 Karuizawa brick arch"/>
-        <img loading="lazy" src="IMG_7878.jpeg" alt="2025 ride selfie"/>
-        <img loading="lazy" src="2025-sakura-group.jpg" alt="2025 spring ride under cherry blossoms"/>
-        <img loading="lazy" src="2025-sakura-city.jpg" alt="2025 spring ride — city sakura"/>
-        <img loading="lazy" src="2025-harukaen.jpg" alt="2025 晴香園 bike workshop"/>
-        <img loading="lazy" src="2025-1.jpg" alt="2025 ride"/>
-        <img loading="lazy" src="2025-3.jpg" alt="2025 team"/>
-        <img loading="lazy" src="2025-6.jpg" alt="2025 event"/>
+        <img data-src="IMG_5918.JPG" alt="2025 Karuizawa group"/>
+        <img data-src="IMG_0651.JPG" alt="2025 Shimanami bridge"/>
+        <img data-src="IMG_0385.JPG" alt="2025 Karuizawa brick arch"/>
+        <img data-src="IMG_7878.jpeg" alt="2025 ride selfie"/>
+        <img data-src="2025-sakura-group.jpg" alt="2025 spring ride under cherry blossoms"/>
+        <img data-src="2025-sakura-city.jpg" alt="2025 spring ride — city sakura"/>
+        <img data-src="2025-harukaen.jpg" alt="2025 晴香園 bike workshop"/>
+        <img data-src="2025-1.jpg" alt="2025 ride"/>
+        <img data-src="2025-3.jpg" alt="2025 team"/>
+        <img data-src="2025-6.jpg" alt="2025 event"/>
       </div>
     </div>
 
     <!-- 2024 -->
     <div class="year-block">
-      <div class="year-label"><span>2024</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2024</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="IMG_4148.jpeg" alt="2024 ride"/>
-        <img loading="lazy" src="IMG_4566.JPG" alt="2024 guide with child"/>
-        <img loading="lazy" src="IMG_5855.jpeg" alt="2024 pre-ride briefing"/>
-        <img loading="lazy" src="2024-1.jpg" alt="2024 team"/>
-        <img loading="lazy" src="2024-2.jpg" alt="2024 ride"/>
-        <img loading="lazy" src="2024-3.jpg" alt="2024 challengers"/>
-        <img loading="lazy" src="2024-4.jpg" alt="2024 event"/>
-        <img loading="lazy" src="2024-7.jpg" alt="2024 group"/>
+        <img data-src="IMG_4148.jpeg" alt="2024 ride"/>
+        <img data-src="IMG_4566.JPG" alt="2024 guide with child"/>
+        <img data-src="IMG_5855.jpeg" alt="2024 pre-ride briefing"/>
+        <img data-src="2024-1.jpg" alt="2024 team"/>
+        <img data-src="2024-2.jpg" alt="2024 ride"/>
+        <img data-src="2024-3.jpg" alt="2024 challengers"/>
+        <img data-src="2024-4.jpg" alt="2024 event"/>
+        <img data-src="2024-7.jpg" alt="2024 group"/>
       </div>
     </div>
 
     <!-- 2023 -->
     <div class="year-block">
-      <div class="year-label"><span>2023</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2023</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="IMG_1699.jpeg" alt="2023 riders with local children"/>
-        <img loading="lazy" src="IMG_7832.JPG" alt="2023 Miyajima shrine"/>
-        <img loading="lazy" src="IMG_1093.jpeg" alt="2023 rice fields"/>
-        <img loading="lazy" src="2023-5.jpg" alt="2023 team"/>
-        <img loading="lazy" src="2023-6.jpg" alt="2023 ride"/>
-        <img loading="lazy" src="2023-7.jpg" alt="2023 challengers"/>
-        <img loading="lazy" src="2023-8.jpg" alt="2023 group"/>
+        <img data-src="IMG_1699.jpeg" alt="2023 riders with local children"/>
+        <img data-src="IMG_7832.JPG" alt="2023 Miyajima shrine"/>
+        <img data-src="IMG_1093.jpeg" alt="2023 rice fields"/>
+        <img data-src="2023-5.jpg" alt="2023 team"/>
+        <img data-src="2023-6.jpg" alt="2023 ride"/>
+        <img data-src="2023-7.jpg" alt="2023 challengers"/>
+        <img data-src="2023-8.jpg" alt="2023 group"/>
       </div>
     </div>
 
     <!-- 2022 -->
     <div class="year-block">
-      <div class="year-label"><span>2022</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2022</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="2022.jpg" alt="2022 group at waterfront"/>
-        <img loading="lazy" src="2022-3.jpg" alt="2022 ride"/>
-        <img loading="lazy" src="2022-4.jpg" alt="2022 team"/>
-        <img loading="lazy" src="2022teruteru.jpg" alt="2022 teruteru"/>
+        <img data-src="2022.jpg" alt="2022 group at waterfront"/>
+        <img data-src="2022-3.jpg" alt="2022 ride"/>
+        <img data-src="2022-4.jpg" alt="2022 team"/>
+        <img data-src="2022teruteru.jpg" alt="2022 teruteru"/>
       </div>
     </div>
 
     <!-- 2021 -->
     <div class="year-block">
-      <div class="year-label"><span>2021</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2021</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="2021.jpg" alt="2021 riders at temple garden"/>
-        <img loading="lazy" src="2021-2.jpg" alt="2021 team"/>
+        <img data-src="2021.jpg" alt="2021 riders at temple garden"/>
+        <img data-src="2021-2.jpg" alt="2021 team"/>
       </div>
     </div>
 
     <!-- 2020 -->
     <div class="year-block">
-      <div class="year-label"><span>2020</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2020</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="2020Karuizawa.jpg" alt="2020 Karuizawa group"/>
-        <img loading="lazy" src="2020Karuizawa2.jpg" alt="2020 Karuizawa ride"/>
-        <img loading="lazy" src="2020Karuizawa3.jpg" alt="2020 Karuizawa team"/>
-        <img loading="lazy" src="2020Karuizawa4.jpg" alt="2020 Karuizawa challengers"/>
+        <img data-src="2020Karuizawa.jpg" alt="2020 Karuizawa group"/>
+        <img data-src="2020Karuizawa2.jpg" alt="2020 Karuizawa ride"/>
+        <img data-src="2020Karuizawa3.jpg" alt="2020 Karuizawa team"/>
+        <img data-src="2020Karuizawa4.jpg" alt="2020 Karuizawa challengers"/>
       </div>
     </div>
 
     <!-- 2019 -->
     <div class="year-block">
-      <div class="year-label"><span>2019</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2019</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="IMG_9365.JPG" alt="2019 team fist bump"/>
-        <img loading="lazy" src="IMG_5867.jpeg" alt="2019 river ride"/>
-        <img loading="lazy" src="IMG_2465.JPG" alt="2019 open road"/>
-        <img loading="lazy" src="2019.jpg" alt="2019 support van team"/>
-        <img loading="lazy" src="2019-1.jpg" alt="2019 ride"/>
-        <img loading="lazy" src="2019-2.jpg" alt="2019 group at venue"/>
-        <img loading="lazy" src="2019-3.jpg" alt="2019 forest road ride"/>
-        <img loading="lazy" src="2019-4.jpg" alt="2019 team"/>
-        <img loading="lazy" src="2019-5.jpg" alt="2019 challengers"/>
-        <img loading="lazy" src="2019-6.jpg" alt="2019 event"/>
-        <img loading="lazy" src="2019-8.jpg" alt="2019 group"/>
-        <img loading="lazy" src="2019-9.jpg" alt="2019 ride 9"/>
-        <img loading="lazy" src="2019-10.jpg" alt="2019 ride 10"/>
+        <img data-src="IMG_9365.JPG" alt="2019 team fist bump"/>
+        <img data-src="IMG_5867.jpeg" alt="2019 river ride"/>
+        <img data-src="IMG_2465.JPG" alt="2019 open road"/>
+        <img data-src="2019.jpg" alt="2019 support van team"/>
+        <img data-src="2019-1.jpg" alt="2019 ride"/>
+        <img data-src="2019-2.jpg" alt="2019 group at venue"/>
+        <img data-src="2019-3.jpg" alt="2019 forest road ride"/>
+        <img data-src="2019-4.jpg" alt="2019 team"/>
+        <img data-src="2019-5.jpg" alt="2019 challengers"/>
+        <img data-src="2019-6.jpg" alt="2019 event"/>
+        <img data-src="2019-8.jpg" alt="2019 group"/>
+        <img data-src="2019-9.jpg" alt="2019 ride 9"/>
+        <img data-src="2019-10.jpg" alt="2019 ride 10"/>
       </div>
     </div>
 
     <!-- 2018 -->
     <div class="year-block">
-      <div class="year-label"><span>2018</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2018</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="2018.jpg" alt="2018 ride"/>
-        <img loading="lazy" src="2018-1.jpg" alt="2018 team"/>
-        <img loading="lazy" src="0N5A5520.JPG" alt="2018 group"/>
-        <img loading="lazy" src="0N5A6794.JPG" alt="2018 group riding"/>
-        <img loading="lazy" src="0N5A6997.JPG" alt="2018 riders"/>
-        <img loading="lazy" src="0N5A7397.JPG" alt="2018 kids and adults riding"/>
-        <img loading="lazy" src="0N5A7720.JPG" alt="2018 support car team"/>
-        <img loading="lazy" src="IMG_9162.jpeg" alt="2018 group with families"/>
-        <img loading="lazy" src="IMG_7176.jpeg" alt="2018 CFC banner at mountain"/>
-        <img loading="lazy" src="IMG_8826.jpeg" alt="2018 CFC banner group"/>
-        <img loading="lazy" src="IMG_0168.jpeg" alt="2018 river ride with Mt Fuji"/>
-        <img loading="lazy" src="IMG_9220.jpeg" alt="2018 mountain celebration"/>
+        <img data-src="2018.jpg" alt="2018 ride"/>
+        <img data-src="2018-1.jpg" alt="2018 team"/>
+        <img data-src="0N5A5520.JPG" alt="2018 group"/>
+        <img data-src="0N5A6794.JPG" alt="2018 group riding"/>
+        <img data-src="0N5A6997.JPG" alt="2018 riders"/>
+        <img data-src="0N5A7397.JPG" alt="2018 kids and adults riding"/>
+        <img data-src="0N5A7720.JPG" alt="2018 support car team"/>
+        <img data-src="IMG_9162.jpeg" alt="2018 group with families"/>
+        <img data-src="IMG_7176.jpeg" alt="2018 CFC banner at mountain"/>
+        <img data-src="IMG_8826.jpeg" alt="2018 CFC banner group"/>
+        <img data-src="IMG_0168.jpeg" alt="2018 river ride with Mt Fuji"/>
+        <img data-src="IMG_9220.jpeg" alt="2018 mountain celebration"/>
       </div>
     </div>
 
     <!-- 2017 -->
     <div class="year-block">
-      <div class="year-label"><span>2017</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2017</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="2017.jpg" alt="2017 ride"/>
-        <img loading="lazy" src="2017-1.jpg" alt="2017 team"/>
-        <img loading="lazy" src="2017-2.jpg" alt="2017 challengers"/>
-        <img loading="lazy" src="2017-3.jpg" alt="2017 group"/>
-        <img loading="lazy" src="2017-4.jpg" alt="2017 event"/>
-        <img loading="lazy" src="2017-5.jpg" alt="2017 ride 5"/>
-        <img loading="lazy" src="2017-6.jpg" alt="2017 ride 6"/>
-        <img loading="lazy" src="2017-7.jpg" alt="2017 ride 7"/>
-        <img loading="lazy" src="2017-8.jpg" alt="2017 ride 8"/>
-        <img loading="lazy" src="IMG_0789.JPG" alt="2017 bikes overhead"/>
-        <img loading="lazy" src="NL3A6232.JPG" alt="2017 team jump"/>
-        <img loading="lazy" src="IMG_2502.JPG" alt="2017 kids event"/>
+        <img data-src="2017.jpg" alt="2017 ride"/>
+        <img data-src="2017-1.jpg" alt="2017 team"/>
+        <img data-src="2017-2.jpg" alt="2017 challengers"/>
+        <img data-src="2017-3.jpg" alt="2017 group"/>
+        <img data-src="2017-4.jpg" alt="2017 event"/>
+        <img data-src="2017-5.jpg" alt="2017 ride 5"/>
+        <img data-src="2017-6.jpg" alt="2017 ride 6"/>
+        <img data-src="2017-7.jpg" alt="2017 ride 7"/>
+        <img data-src="2017-8.jpg" alt="2017 ride 8"/>
+        <img data-src="IMG_0789.JPG" alt="2017 bikes overhead"/>
+        <img data-src="NL3A6232.JPG" alt="2017 team jump"/>
+        <img data-src="IMG_2502.JPG" alt="2017 kids event"/>
       </div>
     </div>
 
     <!-- 2016 -->
     <div class="year-block">
-      <div class="year-label"><span>2016</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2016</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="IMG_1026.JPG" alt="2016 Shimanami beach"/>
-        <img loading="lazy" src="IMG_6575.JPG" alt="2016 riders at hotel"/>
-        <img loading="lazy" src="IMG_1313.JPG" alt="2016 Kobe port"/>
+        <img data-src="IMG_1026.JPG" alt="2016 Shimanami beach"/>
+        <img data-src="IMG_6575.JPG" alt="2016 riders at hotel"/>
+        <img data-src="IMG_1313.JPG" alt="2016 Kobe port"/>
       </div>
     </div>
 
     <!-- 2015 -->
     <div class="year-block">
-      <div class="year-label"><span>2015</span></div>
+      <div class="year-label" onclick="toggleYear(this)">
+        <span>2015</span>
+        <span class="year-toggle-icon">▶</span>
+      </div>
       <div class="gallery-grid">
-        <img loading="lazy" src="2015.JPG" alt="2015 first ride"/>
-        <img loading="lazy" src="IMG_1390.JPG" alt="2015 team"/>
+        <img data-src="2015.JPG" alt="2015 first ride"/>
+        <img data-src="IMG_1390.JPG" alt="2015 team"/>
       </div>
     </div>
   </div>
@@ -1408,6 +1455,18 @@
     }
   }
   // If saved === 'ja', or browser is Japanese: keep default Japanese (no class needed)
+
+  function toggleYear(label) {
+    const block = label.parentElement;
+    const isOpen = block.classList.toggle('open');
+    if (isOpen) {
+      // Lazy-load images in this year that haven't loaded yet
+      block.querySelectorAll('img[data-src]').forEach(function(img) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      });
+    }
+  }
 
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
