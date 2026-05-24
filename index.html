@@ -361,6 +361,9 @@
       .hero { padding: 64px 20px 80px; }
       section { padding: 60px 20px; }
     }
+    @media (max-width: 720px) {
+      .story-grid { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 <body>
@@ -449,6 +452,79 @@
     </div>
   </div>
 </div>
+
+<!-- ── CHALLENGER STORY ── -->
+<section style="background: var(--bg-alt); padding: 64px 24px;">
+  <div class="section-inner">
+    <div class="tag"><span data-lang="ja">チャレンジャーの声</span><span data-lang="en">Challenger Story</span></div>
+
+    <div class="story-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 32px;">
+
+      <!-- Story -->
+      <div>
+        <h2 style="font-size: clamp(20px, 3vw, 28px); font-weight: 900; line-height: 1.4; margin-bottom: 16px;">
+          <span data-lang="ja">小さな出来事が、人生を動かす</span>
+          <span data-lang="en">Small moments that change a life</span>
+        </h2>
+
+        <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 24px;">
+          <span data-lang="ja">K君は、もともとほとんど自分から話しかけることのない子でした。ライド中、他のチャレンジャーのパンクに自分から対応したことで、周りから感謝され、それが小さな転機になりました。</span>
+          <span data-lang="en">K was a quiet young person who rarely spoke up. During a ride, he stepped in on his own to fix another challenger's flat tyre — the gratitude he received became a small but defining moment.</span>
+        </p>
+
+        <!-- 3 year timeline -->
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="min-width: 56px; background: var(--navy); color: white; font-size: 11px; font-weight: 800;
+                        border-radius: 6px; padding: 4px 8px; text-align: center; margin-top: 2px;">Year 1</div>
+            <p style="margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.6;">
+              <span data-lang="ja">自分からパンク修理に対応。周りの感謝が、自信の芽になった。</span>
+              <span data-lang="en">Fixed a flat tyre unprompted. The gratitude he received planted a seed of confidence.</span>
+            </p>
+          </div>
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="min-width: 56px; background: var(--navy); color: white; font-size: 11px; font-weight: 800;
+                        border-radius: 6px; padding: 4px 8px; text-align: center; margin-top: 2px;">Year 2</div>
+            <p style="margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.6;">
+              <span data-lang="ja">整備担当に任命され、自然と人と話すようになった。</span>
+              <span data-lang="en">Appointed team mechanic — naturally started talking with more people.</span>
+            </p>
+          </div>
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="min-width: 56px; background: var(--navy); color: white; font-size: 11px; font-weight: 800;
+                        border-radius: 6px; padding: 4px 8px; text-align: center; margin-top: 2px;">Year 3</div>
+            <p style="margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.6;">
+              <span data-lang="ja">他のチャレンジャーをまとめるリーダーに。CFC外でも自らサイクリングを企画・実行。</span>
+              <span data-lang="en">Became a leader guiding other challengers. Organised his own cycling events outside CFC.</span>
+            </p>
+          </div>
+        </div>
+
+        <p style="margin-top: 20px; font-style: italic; font-weight: 700; font-size: 15px; color: var(--green);">
+          <span data-lang="ja">「将来は自転車に関わる仕事をしたい」</span>
+          <span data-lang="en">"I want to work with bikes when I grow up."</span>
+        </p>
+      </div>
+
+      <!-- Mentor quote card -->
+      <div style="background: var(--navy); color: white; border-radius: 20px; padding: 36px 32px;">
+        <p style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #90CAF9; margin-bottom: 20px;">
+          MENTOR'S TAKE
+        </p>
+        <p style="font-size: clamp(18px, 2.5vw, 22px); font-weight: 900; line-height: 1.5; margin-bottom: 24px;">
+          <span data-lang="ja">小さな「できた」が、本人の物語を書き換える</span>
+          <span data-lang="en">One small "I did it" rewrites a young person's story</span>
+        </p>
+        <div style="width: 40px; height: 3px; background: var(--orange-light); margin-bottom: 24px;"></div>
+        <p style="color: #CBD5E1; line-height: 1.8; font-size: 14px;">
+          <span data-lang="ja">私たちは「結果」より「気づきと自信」を残すことを大事にします。</span>
+          <span data-lang="en">We focus on leaving young people with self-awareness and confidence — not just results.</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- ── MISSION ── -->
 <section id="mission">
