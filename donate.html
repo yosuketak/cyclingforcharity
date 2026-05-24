@@ -154,6 +154,21 @@
       font-size: 13px; color: var(--orange); line-height: 1.7;
     }
 
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      background: var(--green); color: white;
+      display: flex; justify-content: center; gap: 0;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      padding: 20px 36px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.2);
+      flex: 1; min-width: 160px;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-num { font-size: 26px; font-weight: 900; }
+    .trust-label { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+
     /* ── IMPACT ── */
     .impact-section { background: var(--green); color: white; padding: 64px 24px; text-align: center; }
     .impact-inner { max-width: 820px; margin: 0 auto; }
@@ -162,6 +177,35 @@
     .impact-item { background: rgba(255,255,255,0.12); border-radius: var(--radius); padding: 24px 20px; }
     .impact-item .amount { font-size: 26px; font-weight: 900; margin-bottom: 6px; }
     .impact-item p { font-size: 13px; opacity: 0.88; line-height: 1.6; }
+
+    /* ── STORY QUOTE ── */
+    .story-section { background: var(--bg-alt); padding: 72px 24px; }
+    .story-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 320px 1fr; gap: 52px; align-items: center; }
+    @media (max-width: 680px) { .story-inner { grid-template-columns: 1fr; } }
+    .story-img { width: 100%; border-radius: var(--radius); object-fit: cover; height: 340px; }
+    .story-tag { display: inline-block; background: var(--orange-pale); color: var(--orange); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 0.04em; }
+    .story-quote { font-size: clamp(20px, 3vw, 28px); font-weight: 900; line-height: 1.5; color: var(--text); margin-bottom: 20px; }
+    .story-quote::before { content: '\201C'; color: var(--green); font-size: 1.4em; line-height: 0; vertical-align: -0.3em; margin-right: 2px; }
+    .story-quote::after  { content: '\201D'; color: var(--green); font-size: 1.4em; line-height: 0; vertical-align: -0.3em; margin-left: 2px; }
+    .story-body { font-size: 15px; color: var(--text-light); line-height: 1.8; margin-bottom: 16px; }
+    .story-credit { font-size: 13px; color: var(--text-light); font-weight: 600; }
+
+    /* ── ANNUAL REPORTS ── */
+    .reports-section { background: white; padding: 72px 24px; }
+    .reports-inner { max-width: 900px; margin: 0 auto; }
+    .reports-tag { display: inline-block; background: var(--green-pale); color: var(--green); font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px; margin-bottom: 14px; letter-spacing: 0.04em; }
+    .reports-title { font-size: clamp(22px, 3.5vw, 32px); font-weight: 900; margin-bottom: 8px; }
+    .reports-sub { font-size: 15px; color: var(--text-light); margin-bottom: 36px; }
+    .reports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .report-card { border: 1.5px solid #e8e8e8; border-radius: var(--radius); overflow: hidden; transition: box-shadow 0.2s; }
+    .report-card:hover { box-shadow: var(--shadow); }
+    .report-cover { width: 100%; display: block; aspect-ratio: 3/4; object-fit: cover; background: #eee; }
+    .report-body { padding: 16px 18px; }
+    .report-year { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+    .report-name { font-size: 15px; font-weight: 800; margin-bottom: 14px; }
+    .report-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .report-btn { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 8px; border: 1.5px solid var(--green); color: var(--green); transition: background 0.2s; }
+    .report-btn:hover { background: var(--green-pale); text-decoration: none; }
 
     /* ── FOOTER ── */
     footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 44px 24px; font-size: 14px; }
@@ -221,6 +265,26 @@
   <h1 data-lang="en">💚 Make a Donation</h1>
   <p data-lang="ja">あなたの寄付が、子どもたちのライドへの参加を支えます。<br/>一人ひとりの支援が、大きな変化を生みます。</p>
   <p data-lang="en">Your donation helps young challengers join the ride.<br/>Every contribution, big or small, makes a real difference.</p>
+</div>
+
+<!-- ── TRUST STRIP ── -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <div class="trust-num">11</div>
+    <div class="trust-label"><span data-lang="ja">年の実績</span><span data-lang="en">Years of Rides</span></div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">80<span style="font-size:16px;">名以上</span></div>
+    <div class="trust-label"><span data-lang="ja">チャレンジャーが参加</span><span data-lang="en">Challengers Supported</span></div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">100%</div>
+    <div class="trust-label"><span data-lang="ja">寄付金がライド活動へ</span><span data-lang="en">Donations Fund Rides</span></div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">NPO</div>
+    <div class="trust-label"><span data-lang="ja">法人認証済（東京都）</span><span data-lang="en">Certified NPO, Tokyo</span></div>
+  </div>
 </div>
 
 <!-- ── DONATE SECTION ── -->
@@ -326,6 +390,76 @@
         <div class="amount">¥30,000</div>
         <p data-lang="ja">チャレンジャー1名の1泊2日ライドの全費用をサポート</p>
         <p data-lang="en">Fully sponsors one challenger for a 2-day overnight ride</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHALLENGER STORY ── -->
+<section class="story-section">
+  <div class="story-inner">
+    <img class="story-img" src="児童養護施設交流会.JPG" alt="チャレンジャーKくん"/>
+    <div>
+      <span class="story-tag"><span data-lang="ja">チャレンジャーの声</span><span data-lang="en">A Challenger's Story</span></span>
+      <div class="story-quote">
+        <span data-lang="ja">自転車に乗れた日、初めて自分を誇りに思えた。</span>
+        <span data-lang="en">The day I rode on my own, I felt proud of myself for the first time.</span>
+      </div>
+      <p class="story-body" data-lang="ja">児童養護施設で育ったKくんは、自転車に乗れないことで長年コンプレックスを抱えていました。CFCのプログラムに参加した1年目で自転車に乗れるようになり、2年目には東京〜富士山の200kmを完走。3年目には施設の子どもたちに自転車の乗り方を教える立場になりました。</p>
+      <p class="story-body" data-lang="en">Growing up in residential care, K had long felt ashamed that he couldn't ride a bike. In his first year with CFC, he learned to ride. In his second year, he completed a 200km Tokyo-to-Mt.Fuji challenge. By his third year, he was teaching younger children in his facility how to ride.</p>
+      <p class="story-credit" data-lang="ja">— K くん（チャレンジャー参加3年目）</p>
+      <p class="story-credit" data-lang="en">— K (3rd year Challenger)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── ANNUAL REPORTS ── -->
+<section class="reports-section">
+  <div class="reports-inner">
+    <div class="reports-tag"><span data-lang="ja">財務透明性</span><span data-lang="en">Transparency</span></div>
+    <h2 class="reports-title" data-lang="ja">寄付金の使い道をご確認ください</h2>
+    <h2 class="reports-title" data-lang="en">See Exactly Where Your Donation Goes</h2>
+    <p class="reports-sub" data-lang="ja">毎年、活動報告書を公開しています。ライドの実績・参加者数・財務内容をご確認いただけます。</p>
+    <p class="reports-sub" data-lang="en">We publish an annual report every year covering our rides, participants, and finances.</p>
+    <div class="reports-grid">
+      <!-- 2025 -->
+      <div class="report-card">
+        <div data-lang="ja"><img class="report-cover" src="annual-report-2025-cover-ja.jpg" alt="活動報告書 2025"/></div>
+        <div data-lang="en"><img class="report-cover" src="annual-report-2025-cover-en.jpg" alt="Annual Report 2025"/></div>
+        <div class="report-body">
+          <div class="report-year">2025</div>
+          <div class="report-name"><span data-lang="ja">2025年度 活動報告書</span><span data-lang="en">2025 Annual Report</span></div>
+          <div class="report-links">
+            <a class="report-btn" data-lang="ja" href="CFC Annual Report 2025 JA.pdf" target="_blank">日本語 PDF</a>
+            <a class="report-btn" data-lang="en" href="CFC Annual Report 2025 EN.pdf" target="_blank">English PDF</a>
+          </div>
+        </div>
+      </div>
+      <!-- 2024 -->
+      <div class="report-card">
+        <div data-lang="ja"><img class="report-cover" src="annual-report-2024-cover-ja.jpg" alt="活動報告書 2024"/></div>
+        <div data-lang="en"><img class="report-cover" src="annual-report-2024-cover-en.jpg" alt="Annual Report 2024"/></div>
+        <div class="report-body">
+          <div class="report-year">2024</div>
+          <div class="report-name"><span data-lang="ja">2024年度 活動報告書</span><span data-lang="en">2024 Annual Report</span></div>
+          <div class="report-links">
+            <a class="report-btn" data-lang="ja" href="CFC Annual Report 2024 JA.pdf" target="_blank">日本語 PDF</a>
+            <a class="report-btn" data-lang="en" href="CFC Annual Report 2024 EN.pdf" target="_blank">English PDF</a>
+          </div>
+        </div>
+      </div>
+      <!-- 2023 -->
+      <div class="report-card">
+        <div data-lang="ja"><img class="report-cover" src="annual-report-2023-cover-ja.jpg" alt="活動報告書 2023"/></div>
+        <div data-lang="en"><img class="report-cover" src="annual-report-2023-cover-en.jpg" alt="Annual Report 2023"/></div>
+        <div class="report-body">
+          <div class="report-year">2023</div>
+          <div class="report-name"><span data-lang="ja">2023年度 活動報告書</span><span data-lang="en">2023 Annual Report</span></div>
+          <div class="report-links">
+            <a class="report-btn" data-lang="ja" href="CFC Annual Report 2023 JA.pdf" target="_blank">日本語 PDF</a>
+            <a class="report-btn" data-lang="en" href="CFC Annual Report 2023 EN.pdf" target="_blank">English PDF</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
