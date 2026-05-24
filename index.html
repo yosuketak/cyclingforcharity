@@ -134,16 +134,16 @@
     .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--orange-light); color: white; border-radius: 12px;
-      padding: 14px 28px; font-weight: 700; font-size: 16px;
-      box-shadow: 0 4px 18px rgba(230,81,0,0.4); transition: transform 0.2s;
+      background: white; color: var(--green); border-radius: 12px;
+      padding: 15px 32px; font-weight: 800; font-size: 17px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18); transition: transform 0.2s;
     }
-    .btn-primary:hover { transform: translateY(-2px); text-decoration: none; color: white; }
+    .btn-primary:hover { transform: translateY(-2px); text-decoration: none; color: var(--green); }
     .btn-outline {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(255,255,255,0.12); color: white;
-      border: 1.5px solid rgba(255,255,255,0.5); border-radius: 12px;
-      padding: 14px 28px; font-weight: 700; font-size: 16px;
+      border: 2px solid rgba(255,255,255,0.7); border-radius: 12px;
+      padding: 15px 28px; font-weight: 700; font-size: 16px;
       transition: background 0.2s;
     }
     .btn-outline:hover { background: rgba(255,255,255,0.22); text-decoration: none; color: white; }
@@ -379,7 +379,9 @@
     <a href="get-involved.html#contact"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
   </div>
   <div style="display:flex;align-items:center;gap:12px;">
-    <button class="lang-btn" onclick="toggleLang()">English/日本語</button>
+    <button class="lang-btn" onclick="toggleLang()" title="Switch language / 言語切替">
+      <span data-lang="ja">🌐 EN</span><span data-lang="en">🌐 JP</span>
+    </button>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -414,13 +416,13 @@
     <p class="hero-sub-sm" data-lang="en">Cycling for Charity Japan is an NPO that supports marginalized youth through long-distance cycling events, raising funds and awareness for educational inequality in Japan.</p>
 
     <div class="hero-btns">
-      <a class="btn-primary" href="#involved">
+      <a class="btn-primary" href="donate.html">
+        <span data-lang="ja">❤️ 寄付する</span>
+        <span data-lang="en">❤️ Donate</span>
+      </a>
+      <a class="btn-outline" href="get-involved.html">
         <span data-lang="ja">参加する →</span>
         <span data-lang="en">Get Involved →</span>
-      </a>
-      <a class="btn-outline" href="#mission">
-        <span data-lang="ja">私たちについて</span>
-        <span data-lang="en">Learn More</span>
       </a>
     </div>
   </div>
