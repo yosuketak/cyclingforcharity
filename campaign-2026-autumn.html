@@ -245,8 +245,8 @@
     </div>
     <div class="progress-pct" id="progressPct"></div>
     <div class="progress-note">
-      <span data-lang="ja">※ チャリティアスリートプラットフォーム経由の寄付を反映しています</span>
-      <span data-lang="en">※ Reflects donations via the Charity Athletes platform</span>
+      <span data-lang="ja">※ クレジットカード・銀行振込・その他すべてのチャネルの確定済み寄付を反映しています</span>
+      <span data-lang="en">※ Reflects all confirmed donations across all channels (card, bank transfer, and more)</span>
     </div>
   </div>
 </div>
@@ -431,25 +431,30 @@
     document.getElementById('mobileMenu').classList.toggle('open');
   }
 
-  /* ── Live progress bar from Supabase ── */
+  /* ── Live progress bar from master_donations via Supabase RPC ── */
   const SUPABASE_URL  = 'https://pnypejauufyriqtvpqev.supabase.co';
-  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXBlamF1dWZ5cmlxdHZwcWV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyODIyMTMsImV4cCI6MjA5MDg1ODIxM30.nyrOzO4NNeZeLtDk79Gk-5wilbKhKbVmHRl7wSjeq8Y';
-  const CFC_NONPROFIT = 'a1000000-0000-0000-0000-000000000001';
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBueXBlamF1dWZ5cmlxdHZwcWV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyODIyMTMsImV4cCI6MjA5MDg1ODIxM30.nyrOzO4NNeZeLtDk79Gk-5wilbKhKbVmHRl7wSjerc8Y';
   const GOAL = 1000000;
 
   async function loadProgress() {
     try {
-      const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/campaigns?select=raised_amount_jpy&nonprofit_id=eq.${CFC_NONPROFIT}`,
-        { headers: { apikey: SUPABASE_ANON, Authorization: `Bearer ${SUPABASE_ANON}` } }
-      );
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_ytd_donations`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_ANON,
+          Authorization: `Bearer ${SUPABASE_ANON}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ year_param: new Date().getFullYear() })
+      });
       const data = await res.json();
-      const raised = (data || []).reduce((sum, c) => sum + (c.raised_amount_jpy || 0), 0);
-      const pct = Math.min(100, Math.round((raised / GOAL) * 100));
+      const raised = parseFloat((data[0] || {}).total_jpy || 0);
+      const pct    = Math.min(100, Math.round((raised / GOAL) * 100));
+      const isEn   = document.body.classList.contains('lang-en');
 
       document.getElementById('raisedAmount').textContent = '¥' + raised.toLocaleString('ja-JP');
-      document.getElementById('progressBar').style.width = pct + '%';
-      document.getElementById('progressPct').textContent = pct + '%' + (document.body.classList.contains('lang-en') ? ' of goal reached' : ' 達成');
+      document.getElementById('progressBar').style.width  = pct + '%';
+      document.getElementById('progressPct').textContent  = pct + '% ' + (isEn ? 'of goal reached' : '達成');
     } catch(e) {
       document.getElementById('raisedAmount').textContent = '—';
     }
