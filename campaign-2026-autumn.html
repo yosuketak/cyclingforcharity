@@ -448,15 +448,20 @@
         body: JSON.stringify({ year_param: new Date().getFullYear() })
       });
       const data = await res.json();
-      const raised = parseFloat((data[0] || {}).total_jpy || 0);
+      console.log('[CFC] YTD donation data:', data);
+      const row    = Array.isArray(data) ? data[0] : data;
+      const raised = parseFloat((row || {}).total_jpy || 0);
       const pct    = Math.min(100, Math.round((raised / GOAL) * 100));
       const isEn   = document.body.classList.contains('lang-en');
+      console.log('[CFC] raised:', raised, 'pct:', pct);
 
       document.getElementById('raisedAmount').textContent = '¥' + raised.toLocaleString('ja-JP');
       document.getElementById('progressBar').style.width  = pct + '%';
       document.getElementById('progressPct').textContent  = pct + '% ' + (isEn ? 'of goal reached' : '達成');
     } catch(e) {
+      console.error('[CFC] Progress bar error:', e);
       document.getElementById('raisedAmount').textContent = '—';
+      document.getElementById('progressPct').textContent = 'データ取得エラー / Error loading data';
     }
   }
   loadProgress();
