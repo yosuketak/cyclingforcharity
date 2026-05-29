@@ -413,6 +413,26 @@
   <a href="get-involved.html#contact"><span data-lang="ja">お問い合わせ</span><span data-lang="en">Contact</span></a>
 </div>
 
+<!-- ── CAMPAIGN BANNER ── -->
+<div id="campaignBanner" style="display:none;">
+  <!-- Opening Soon (before Aug 1) -->
+  <div id="bannerSoon" style="display:none; background:#1A237E; color:white; text-align:center; padding:10px 20px; font-size:14px; font-weight:700;">
+    <span data-lang="ja">🍂 2026秋のライド応援キャンペーン、8月1日より開始！</span>
+    <span data-lang="en">🍂 Our 2026 Autumn Ride Campaign launches August 1st — stay tuned!</span>
+  </div>
+  <!-- Live (Aug 1 onwards) -->
+  <div id="bannerLive" style="display:none; background:var(--orange-light); color:white; text-align:center; padding:10px 20px; font-size:14px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
+    <span>
+      <span data-lang="ja">🍂 2026秋のライド応援キャンペーン開催中！軽井沢・琵琶湖ライドを応援しよう</span>
+      <span data-lang="en">🍂 2026 Autumn Ride Campaign is live! Support our Karuizawa &amp; Lake Biwa rides</span>
+    </span>
+    <a href="campaign-2026-autumn.html" style="background:white; color:var(--orange); font-size:13px; font-weight:800; padding:5px 16px; border-radius:20px; text-decoration:none; white-space:nowrap;">
+      <span data-lang="ja">詳しくはこちら →</span>
+      <span data-lang="en">Learn more →</span>
+    </a>
+  </div>
+</div>
+
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-inner">
@@ -1444,6 +1464,22 @@
     }
   }
   // If saved === 'ja', or browser is Japanese: keep default Japanese (no class needed)
+
+  /* ── Campaign Banner ── */
+  (function() {
+    const now   = new Date();
+    const start = new Date('2026-08-01T00:00:00+09:00'); // JST
+    const end   = new Date('2026-10-31T23:59:59+09:00');
+    const banner = document.getElementById('campaignBanner');
+    if (now < start) {
+      banner.style.display = 'block';
+      document.getElementById('bannerSoon').style.display = 'block';
+    } else if (now <= end) {
+      banner.style.display = 'block';
+      document.getElementById('bannerLive').style.display = 'flex';
+    }
+    // After Oct 31 the banner stays hidden automatically
+  })();
 
   function toggleYear(label) {
     const block = label.parentElement;
