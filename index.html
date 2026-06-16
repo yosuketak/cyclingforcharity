@@ -1022,10 +1022,10 @@
             <span data-lang="ja">練習会・長距離チャレンジ・報告会の3ステップで構成。チャレンジャー1人に2人のメンターが寄り添い、振り返りノートへのフィードバックも丁寧に行います。</span>
             <span data-lang="en">Three stages — practice, long-distance challenge, and a report presentation — with two dedicated mentors who support each Challenger and provide written feedback in their daily reflection journal.</span>
           </p>
-          <a href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank" rel="noopener noreferrer"
-             style="font-size: 13px; font-weight: 700; color: var(--green); text-decoration: none;">
+          <button onclick="openPost('challenger-program')"
+             style="font-size: 13px; font-weight: 700; color: var(--green); background:none; border:none; padding:0; cursor:pointer;">
             <span data-lang="ja">続きを読む →</span><span data-lang="en">Read more →</span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -1044,10 +1044,10 @@
             <span data-lang="ja">目標5,000kmを800km以上上回る素晴らしい結果！1週間、国内外から多くのライダーにご参加いただきました。</span>
             <span data-lang="en">We smashed our 5,000 km target by over 800 km. Riders from Japan and around the world made it happen. Thank you!</span>
           </p>
-          <a href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank" rel="noopener noreferrer"
-             style="font-size: 13px; font-weight: 700; color: var(--green); text-decoration: none;">
+          <button onclick="openPost('karuizawa-2025')"
+             style="font-size: 13px; font-weight: 700; color: var(--green); background:none; border:none; padding:0; cursor:pointer;">
             <span data-lang="ja">続きを読む →</span><span data-lang="en">Read more →</span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -1066,10 +1066,10 @@
             <span data-lang="ja">晴天の中、8名のライダーが満開の桜並木を抜けながら多摩湖へ。元チャレンジャーも大人ライダーとして参加しました！</span>
             <span data-lang="en">Eight riders — including a former Challenger now riding as an adult — enjoyed cherry blossoms along the 40 km Tama Lake route.</span>
           </p>
-          <a href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank" rel="noopener noreferrer"
-             style="font-size: 13px; font-weight: 700; color: var(--green); text-decoration: none;">
+          <button onclick="openPost('virtual-ride-2026')"
+             style="font-size: 13px; font-weight: 700; color: var(--green); background:none; border:none; padding:0; cursor:pointer;">
             <span data-lang="ja">続きを読む →</span><span data-lang="en">Read more →</span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -1088,10 +1088,10 @@
             <span data-lang="ja">怪我もトラブルもなく、全員が碓氷峠の最高地点に到達。東京から軽井沢まで2泊3日、チャレンジャーの子どもたちも完走しました。</span>
             <span data-lang="en">No injuries, no mechanicals — everyone reached the summit of Usui Pass. A 3-day, 216 km journey from Tokyo to Karuizawa, completed by riders and young Challengers alike.</span>
           </p>
-          <a href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank" rel="noopener noreferrer"
-             style="font-size: 13px; font-weight: 700; color: var(--green); text-decoration: none;">
+          <button onclick="openPost('spring-tama-2026')"
+             style="font-size: 13px; font-weight: 700; color: var(--green); background:none; border:none; padding:0; cursor:pointer;">
             <span data-lang="ja">続きを読む →</span><span data-lang="en">Read more →</span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -1110,10 +1110,10 @@
             <span data-lang="ja">2日間、9名全員が無事に尾道でゴール。チャレンジャーも参加した今年のしまなみライドは最高の天気に恵まれました。</span>
             <span data-lang="en">All nine riders — including a Challenger on their third year — completed the 2-day Shimanami route under perfect skies.</span>
           </p>
-          <a href="https://www.facebook.com/cyclingforcharityjapan/" target="_blank" rel="noopener noreferrer"
-             style="font-size: 13px; font-weight: 700; color: var(--green); text-decoration: none;">
+          <button onclick="openPost('shimanami-2025')"
+             style="font-size: 13px; font-weight: 700; color: var(--green); background:none; border:none; padding:0; cursor:pointer;">
             <span data-lang="ja">続きを読む →</span><span data-lang="en">Read more →</span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -1504,6 +1504,133 @@
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
   }
+
+
+  /* ── Blog modal ── */
+  var blogPosts = {
+    'challenger-program': {
+      date: { ja: '2026年6月16日', en: 'June 16, 2026' },
+      img: 'blog-challenger-program-2026.jpg',
+      imgAlt: 'メンターからのフィードバック — 振り返りノート',
+      titleJa: '📓 チャレンジャープログラムって、どんな活動？',
+      titleEn: '📓 What is the Challenger Program?',
+      bodyJa: `<p>児童養護施設で育った子ども・若者たちが、自転車を通じて成長していく——それがCFCのチャレンジャープログラムです。</p>
+<p>プログラムは大きく3つのステップで構成されています。</p>
+<h4>【練習会】</h4>
+<p>仲間と一緒に荒川などでサイクリングを練習。体力づくりだけでなく、チームで走るためのコミュニケーション、パンク修理などの自転車メンテナンスも学びます。</p>
+<h4>【長距離チャレンジ】</h4>
+<p>軽井沢・琵琶湖などへの2〜3日間の本番ライドに挑戦。旅の夜には、大人の参加者がキャリアの話をしてくれる「キャリアナイト」も。これがチャレンジャーにとってさまざまの職業の大人に会える機会になり、ロールモデルとの出会いになる事もあります。</p>
+<h4>【報告会】</h4>
+<p>チャレンジを終えたあと、チャレンジャー自身が自分の言葉で発表します。「自分が担当したこと」「うまくいったこと、いかなかったこと」「自分が変わったと感じること」——それを人前で語ることも、大切な成長の一歩です。</p>
+<h4>【メンターの存在】</h4>
+<p>このプログラムでは、チャレンジャー1人に対して大人のメンターが2人つきます。練習会からはじまり、長距離チャレンジ、報告会まで、一人ひとりに寄り添いながらサポートしてくれます。</p>
+<p>プログラム中、チャレンジャーは毎日「振り返りノート」を記入します。「今日の目標は達成できたか」「担当した役割でうまくいったこと、いかなかったこと」「次回頑張りたいこと」——そのノートに、メンターが丁寧にフィードバックを書き込んでいきます。ただ走るだけでなく、経験をしっかり学びに繋げていくための仕組みです。</p>
+<p>このプログラムは、1年で終わりではありません。<strong>チャレンジャー</strong>として挑戦した子たちが、翌年は<strong>ジュニアリーダー</strong>として後輩を引っ張り、社会人になれば<strong>アラムナイ</strong>として後輩のメンターになっていく。そういうサイクルを大切にしています。</p>
+<p>自転車で山を越えた経験が、いつか自分の人生の大きな目標に向かうときの力になる。CFCはその瞬間を、一緒につくっていきたいと思っています。</p>`,
+      bodyEn: `<p>Young people from children's residential care homes, growing through the power of cycling — that's what the CFC Challenger Program is all about.</p>
+<p>The program is built around three key stages:</p>
+<h4>Practice Rides</h4>
+<p>Challengers train together along routes like the Arakawa River, building fitness and cycling skills. They also learn how to ride safely in a group, and pick up practical skills like puncture repair and bike maintenance.</p>
+<h4>Long-Distance Challenge</h4>
+<p>The main event: a 2–3 day ride to destinations like Karuizawa or Lake Biwa. Each evening on the road, adult participants share their career journeys at a "Career Night" — not just the highlights, but the setbacks and how they pushed through. For many Challengers, it's a rare chance to meet adults from all walks of life, and sometimes find a role model they never expected.</p>
+<h4>Report Presentation</h4>
+<p>After the challenge, each Challenger stands up and shares their experience in their own words — what they were responsible for, what went well and what didn't, and how they feel they've grown. Speaking in front of others is itself an important step forward.</p>
+<h4>The Role of Mentors</h4>
+<p>Every Challenger is paired with two adult mentors, who support them from the very first practice ride all the way through to the final presentation.</p>
+<p>Throughout the program, Challengers keep a daily reflection journal — recording their goals, their role for the day, what worked, what didn't, and what they want to improve next time. Their mentors read each entry and write personal feedback. It's a structure designed to turn every experience — success and failure alike — into real learning.</p>
+<p>This program doesn't end after one year. Challengers who pushed their limits come back the following year as <strong>Junior Leaders</strong>, guiding the next generation. And when they enter the workforce, they return as <strong>Alumni</strong> — mentoring the Challengers who come after them.</p>
+<p>The experience of crossing a mountain by bike — we believe that stays with you. And when life's bigger challenges come, it becomes the strength to keep going.</p>`
+    },
+    'virtual-ride-2026': {
+      date: { ja: '2026年5月11日', en: 'May 11, 2026' },
+      img: 'blog-virtual-ride-2026.jpg',
+      imgAlt: 'CFC Virtual Ride 2026',
+      titleJa: '🏁 バーチャルライド2026 最終結果発表！チーム合計5,828km達成',
+      titleEn: '🏁 Virtual Ride 2026 — Team total: 5,828 km!',
+      bodyJa: `<p>目標5,000kmを800km以上上回る素晴らしい結果！1週間、国内外から多くのライダーにご参加いただきました。</p>
+<p>バーチャルライド2026は、Stravaを使ってオンラインで参加できるチャリティライドイベントです。参加者それぞれが自分のペースで走り、チームの合計距離を積み上げていく形式。今年は初めての試みでしたが、予想を大きく超える盛り上がりを見せてくれました。</p>
+<p>ご参加いただいたすべてのライダーの皆さん、本当にありがとうございました！来年もぜひ一緒に走りましょう。</p>`,
+      bodyEn: `<p>We smashed our 5,000 km target by over 800 km. Riders from Japan and around the world made it happen — thank you!</p>
+<p>The CFC Virtual Ride is a charity cycling event run via Strava, where participants ride at their own pace and contribute to a shared team total. This was our first time running it at this scale, and the response was incredible.</p>
+<p>Thank you to every rider who joined. We hope to see you again next year!</p>`
+    },
+    'spring-tama-2026': {
+      date: { ja: '2026年3月30日', en: 'March 30, 2026' },
+      img: 'blog-spring-tama-ride.jpg',
+      imgAlt: '春の多摩湖ライド',
+      titleJa: '🌸 春の武蔵境〜多摩湖 ランチライド ご報告',
+      titleEn: '🌸 Spring Ride: Musashisakai to Tama Lake',
+      bodyJa: `<p>晴天の中、8名のライダーが満開の桜並木を抜けながら多摩湖へ。元チャレンジャーも大人ライダーとして参加しました！</p>
+<p>武蔵境をスタートし、玉川上水沿いの桜のトンネルを抜けながら多摩湖まで約40kmのルート。途中の公園でランチを楽しみ、のんびりとした春の一日を過ごしました。</p>
+<p>今回特別嬉しかったのは、元チャレンジャーが社会人になってから初めて大人ライダーとして参加してくれたこと。子どもの頃に一緒に走った仲間が、大人として同じ道を走る——これがCFCらしい瞬間だと思います。</p>`,
+      bodyEn: `<p>Eight riders — including a former Challenger now riding as an adult — enjoyed cherry blossoms along the 40 km Tama Lake route.</p>
+<p>We set off from Musashisakai and followed the Tamagawa Josui canal path, cycling through a tunnel of cherry blossoms in full bloom. A relaxed lunch stop in the park, then back under the spring sky.</p>
+<p>The highlight: a former Challenger, now working, joining as an adult rider for the first time. Riding the same roads as a grown-up — that's what CFC is all about.</p>`
+    },
+    'karuizawa-2025': {
+      date: { ja: '2025年10月13日', en: 'October 13, 2025' },
+      img: 'Karuizawa.jpg',
+      imgAlt: '軽井沢チャレンジライド2025',
+      titleJa: '⛰️ 軽井沢チャレンジライド2025 合計216.6km完走！',
+      titleEn: '⛰️ Karuizawa Challenge Ride 2025 — 216.6 km complete!',
+      bodyJa: `<p>怪我もトラブルもなく、全員が碓氷峠の最高地点に到達。東京から軽井沢まで2泊3日、チャレンジャーの子どもたちも完走しました。</p>
+<p>Day 1は荒川沿いから北上。Day 2は最大の難所、碓氷峠に挑みました。急勾配が続く峠道を、ライダーとチャレンジャーが声をかけ合いながら登り切った瞬間は、今年最高の場面でした。Day 3は軽井沢の高原を気持ちよく走り、めがね橋でゴール。</p>
+<p>参加してくださったすべての皆さん、サポートしてくださった方々、本当にありがとうございました！</p>`,
+      bodyEn: `<p>No injuries, no mechanicals — everyone reached the summit of Usui Pass. A 3-day, 216 km journey from Tokyo to Karuizawa, completed by riders and young Challengers alike.</p>
+<p>Day 1 took us north along the Arakawa. Day 2 was the big challenge: the steep Usui Pass climb. Riders and Challengers cheered each other on to the top — the highlight of the entire year. Day 3 was a beautiful cruise through the Karuizawa highlands to finish at Megane Bridge.</p>
+<p>Thank you to everyone who rode, volunteered, and supported us along the way!</p>`
+    },
+    'shimanami-2025': {
+      date: { ja: '2025年10月19日', en: 'October 19, 2025' },
+      img: 'blog-shimanami-2025.jpg',
+      imgAlt: 'しまなみチャレンジ2025',
+      titleJa: '🚴 しまなみチャレンジ2025 全員完走！',
+      titleEn: '🚴 Shimanami Challenge 2025 — Everyone finished!',
+      bodyJa: `<p>2日間、9名全員が無事に尾道でゴール。チャレンジャーも参加した今年のしまなみライドは最高の天気に恵まれました。</p>
+<p>今治から尾道まで、瀬戸内海の島々を橋でつなぐしまなみ海道を走る2日間のライド。橋の上からの眺めは絶景で、チャレンジャーたちも「また来たい！」と声が上がっていました。</p>
+<p>今年で3年目となるチャレンジャーも参加。3年間の成長を目の当たりにした瞬間でした。ご支援・ご協力いただいた皆さん、ありがとうございました！</p>`,
+      bodyEn: `<p>All nine riders — including a Challenger on their third year — completed the 2-day Shimanami route under perfect skies.</p>
+<p>The Shimanami Kaido connects the islands of the Seto Inland Sea by bridge, running from Imabari to Onomichi. The views from the bridges are breathtaking — Challengers were already asking if we could come back next year.</p>
+<p>Seeing a Challenger on their third consecutive ride was a special moment. Thank you to everyone who supported this event!</p>`
+    }
+  };
+
+  function openPost(id) {
+    var post = blogPosts[id];
+    if (!post) return;
+    var isEn = document.body.classList.contains('en');
+    var modal = document.getElementById('blogModal');
+    document.getElementById('blogModalImg').src = post.img;
+    document.getElementById('blogModalImg').alt = post.imgAlt;
+    document.getElementById('blogModalDate').textContent = isEn ? post.date.en : post.date.ja;
+    document.getElementById('blogModalTitle').textContent = isEn ? post.titleEn : post.titleJa;
+    document.getElementById('blogModalBody').innerHTML = isEn ? post.bodyEn : post.bodyJa;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePost() {
+    document.getElementById('blogModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePost();
+  });
 </script>
+<!-- ── Blog Modal ── -->
+<div id="blogModal" style="display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; padding:16px;"
+     onclick="if(event.target===this)closePost()">
+  <div style="background:white; border-radius:20px; max-width:680px; width:100%; max-height:90vh; overflow-y:auto; position:relative;">
+    <button onclick="closePost()" style="position:sticky; top:12px; float:right; margin:12px 12px 0 0; background:rgba(0,0,0,0.08); border:none; border-radius:50%; width:36px; height:36px; font-size:18px; cursor:pointer; line-height:36px; text-align:center;">✕</button>
+    <img id="blogModalImg" src="" alt="" style="width:100%; height:260px; object-fit:cover; border-radius:20px 20px 0 0; display:block;"/>
+    <div style="padding:28px 32px 36px;">
+      <p id="blogModalDate" style="font-size:12px; color:#999; margin-bottom:8px;"></p>
+      <h2 id="blogModalTitle" style="font-size:22px; font-weight:800; line-height:1.4; margin-bottom:20px;"></h2>
+      <div id="blogModalBody" style="font-size:15px; color:#333; line-height:1.8;"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
