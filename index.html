@@ -729,8 +729,9 @@
 </section>
 
 <!-- ── PRACTICE RIDE UPDATE ── -->
-<section id="practice-sept2026" style="padding: 64px 24px; background: var(--bg-alt);">
+<section id="practice-sept2026" style="display:none; padding: 64px 24px; background: var(--bg-alt);">
   <div class="section-inner">
+    <button onclick="this.closest('section').style.display='none'; window.scrollTo({top:0,behavior:'smooth'});" style="font-size:13px;color:var(--text-light);background:none;border:none;cursor:pointer;padding:0;margin-bottom:20px;display:block;">← <span data-lang="ja">閉じる</span><span data-lang="en">Close</span></button>
     <div class="tag"><span data-lang="ja">活動レポート</span><span data-lang="en">Activity Report</span></div>
     <h2 class="section-title" data-lang="ja">今シーズン最初の練習会を開催しました 🚴</h2>
     <h2 class="section-title" data-lang="en">First Practice Ride of the Season 🚴</h2>
@@ -761,8 +762,9 @@
 </style>
 
 <!-- ── KARUIZAWA CHALLENGE RIDE OCT 2026 ── -->
-<section id="karuizawa-oct2026" style="padding: 64px 24px; background: var(--bg);">
+<section id="karuizawa-oct2026" style="display:none; padding: 64px 24px; background: var(--bg);">
   <div class="section-inner">
+    <button onclick="this.closest('section').style.display='none'; window.scrollTo({top:0,behavior:'smooth'});" style="font-size:13px;color:var(--text-light);background:none;border:none;cursor:pointer;padding:0;margin-bottom:20px;display:block;">← <span data-lang="ja">閉じる</span><span data-lang="en">Close</span></button>
     <div class="tag"><span data-lang="ja">活動レポート</span><span data-lang="en">Activity Report</span></div>
     <h2 class="section-title" data-lang="ja">軽井沢チャレンジライド 2026 🏔️</h2>
     <h2 class="section-title" data-lang="en">Karuizawa Challenge Ride 2026 🏔️</h2>
@@ -787,8 +789,9 @@
 </section>
 
 <!-- ── LAKE BIWA CHALLENGE OCT 2026 ── -->
-<section id="biwako-oct2026" style="padding: 64px 24px; background: var(--bg-alt);">
+<section id="biwako-oct2026" style="display:none; padding: 64px 24px; background: var(--bg-alt);">
   <div class="section-inner">
+    <button onclick="this.closest('section').style.display='none'; window.scrollTo({top:0,behavior:'smooth'});" style="font-size:13px;color:var(--text-light);background:none;border:none;cursor:pointer;padding:0;margin-bottom:20px;display:block;">← <span data-lang="ja">閉じる</span><span data-lang="en">Close</span></button>
     <div class="tag"><span data-lang="ja">活動レポート</span><span data-lang="en">Activity Report</span></div>
     <h2 class="section-title" data-lang="ja">琵琶湖ビワイチチャレンジ 2026 🏞️</h2>
     <h2 class="section-title" data-lang="en">Lake Biwa Challenge 2026 🏞️</h2>
@@ -813,8 +816,9 @@
 </section>
 
 <!-- ── SEIKOEN EXCHANGE OCT 2026 ── -->
-<section id="seikoen-oct2026" style="padding: 64px 24px; background: var(--bg);">
+<section id="seikoen-oct2026" style="display:none; padding: 64px 24px; background: var(--bg);">
   <div class="section-inner">
+    <button onclick="this.closest('section').style.display='none'; window.scrollTo({top:0,behavior:'smooth'});" style="font-size:13px;color:var(--text-light);background:none;border:none;cursor:pointer;padding:0;margin-bottom:20px;display:block;">← <span data-lang="ja">閉じる</span><span data-lang="en">Close</span></button>
     <div class="tag"><span data-lang="ja">活動レポート</span><span data-lang="en">Activity Report</span></div>
     <h2 class="section-title" data-lang="ja">晴香園交流会 2026 🚲</h2>
     <h2 class="section-title" data-lang="en">Seikoen Exchange Event 2026 🚲</h2>
@@ -1010,7 +1014,7 @@
             <span data-lang="ja">松戸市の晴香園にて交流会を実施。雨天のため屋内プログラムに変更し、子どもたちと一緒に自転車を組み立て、計3台を寄贈しました。</span>
             <span data-lang="en">At Seikoen children's home in Matsudo, rain moved the programme indoors. Children assembled a bicycle alongside CFC members — and three bikes were donated to the home.</span>
           </p>
-          <a href="#seikoen-oct2026" style="font-size: 13px; font-weight: 700; color: var(--green);">
+          <a href="#seikoen-oct2026" onclick="showSection('seikoen-oct2026'); return false;" style="font-size: 13px; font-weight: 700; color: var(--green);">
             <span data-lang="ja">続きを読む →</span><span data-lang="en">Read more →</span>
           </a>
         </div>
@@ -1031,7 +1035,7 @@
             <span data-lang="ja">関東・神戸・京都・山梨から集まった16名が3日間で琵琶湖を一周。キャリアナイトはチャレンジャー自身が司会を務めました。</span>
             <span data-lang="en">16 riders from across Japan completed a 3-day circuit of Lake Biwa. Career Night was hosted by the two challengers themselves.</span>
           </p>
-          <a href="#biwako-oct2026" style="font-size: 13px; font-weight: 700; color: var(--green);">
+          <a href="#biwako-oct2026" onclick="showSection('biwako-oct2026'); return false;" style="font-size: 13px; font-weight: 700; color: var(--green);">
             <span data-lang="ja">続きを読む →</span><span data-lang="en">Read more →</span>
           </a>
         </div>
@@ -1052,7 +1056,7 @@
             <span data-lang="ja">葛西臨海公園から碓氷峠を越えて軽井沢まで3日間・211km。チームの団結力で全員が完走しました。</span>
             <span data-lang="en">30 riders covered 211 km over 3 days from Kasai Rinkai Park to Karuizawa, crossing Usui Pass. Every challenger finished.</span>
           </p>
-          <a href="#karuizawa-oct2026" style="font-size: 13px; font-weight: 700; color: var(--green);">
+          <a href="#karuizawa-oct2026" onclick="showSection('karuizawa-oct2026'); return false;" style="font-size: 13px; font-weight: 700; color: var(--green);">
             <span data-lang="ja">続きを読む →</span><span data-lang="en">Read more →</span>
           </a>
         </div>
@@ -1073,7 +1077,7 @@
             <span data-lang="ja">新木場〜若洲海浜公園コースにて、大人ライダー9名・チャレンジャー5名の計14名が参加。初参加の2名も無事完走し、卒業生が後輩のパンク修理を手伝う温かい場面も。</span>
             <span data-lang="en">14 riders — 9 adults and 5 Challengers — took on the Shinkiba–Wakasu waterfront course. Two first-timers each completed 30 km, and a program graduate helped a new Challenger fix a puncture mid-ride.</span>
           </p>
-          <a href="#practice-sept2026"
+          <a href="#practice-sept2026" onclick="showSection('practice-sept2026'); return false;"
              style="font-size: 13px; font-weight: 700; color: var(--green);">
             <span data-lang="ja">続きを読む →</span><span data-lang="en">Read more →</span>
           </a>
@@ -1578,6 +1582,13 @@
     document.getElementById('mobileMenu').classList.toggle('open');
   }
 
+
+  function showSection(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.style.display = 'block';
+    setTimeout(function() { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+  }
 
   /* ── Blog modal ── */
   var blogPosts = {
