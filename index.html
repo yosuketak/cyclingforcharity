@@ -1557,7 +1557,7 @@
     const now = new Date();
     const end = new Date('2026-10-31T23:59:59+09:00');
     if (now <= end) {
-      document.getElementById('bannerLive').style.display = 'flex';
+      const b = document.getElementById('bannerLive'); if (b) b.style.display = 'flex';
     }
     // After Oct 31 the banner stays hidden automatically
   })();
